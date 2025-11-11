@@ -1,0 +1,48 @@
+[
+    {
+        "id": "25449",
+        "empresa": "aBalados Services, S.L.",
+        "status": "ÉXITO",
+        "details": {
+            "estado_envio_facturantia": "CORRECTO",
+            "tipo_sif": "VERIFACTU",
+            "verifactu_total_facturas_enviadas": 1,
+            "verifactu_total_facturas_correctas": 1,
+            "verifactu_total_facturas_aceptadas_con_errores": 0,
+            "verifactu_total_facturas_rechazadas": 0,
+            "numeros_facturas": {
+                "25449": "25008"
+            },
+            "enlaces_qr": {
+                "25449": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=B91938662&numserie=25008&fecha=11-11-2025&importe=32343.18"
+            }
+        },
+        "pdf_url": "https://www.facturantia.com/ver_afc_api.php?auid=762687769&aen=aBalados%20Services%2C%20S.L.&aej=2025&aeid=25449&acn=B99453326",
+        "enlace_qr": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=B91938662&numserie=25008&fecha=11-11-2025&importe=32343.18",
+        "cliente": "FP LUX REIO PV ZARAGOZA SL.",
+        "importe": 32343.18
+    },
+    {
+        "id": "Int25_007",
+        "empresa": "aBalados Services, S.L.",
+        "status": "ÉXITO",
+        "details": {
+            "estado_envio_facturantia": "CORRECTO",
+            "tipo_sif": "VERIFACTU",
+            "verifactu_total_facturas_enviadas": 1,
+            "verifactu_total_facturas_correctas": 1,
+            "verifactu_total_facturas_aceptadas_con_errores": 0,
+            "verifactu_total_facturas_rechazadas": 0,
+            "numeros_facturas": {
+                "Int25_007": "Int25_004"
+            },
+            "enlaces_qr": {
+                "Int25_007": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=B91938662&numserie=Int25_004&fecha=11-11-2025&importe=182.94"
+            }
+        },
+        "pdf_url": "https://www.facturantia.com/ver_afc_api.php?auid=762687769&aen=aBalados%20Services%2C%20S.L.&aej=2025&aeid=Int25_007&acn=B90482050",
+        "enlace_qr": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=B91938662&numserie=Int25_004&fecha=11-11-2025&importe=182.94",
+        "cliente": "Piquito Olé S.L.",
+        "importe": 148.18
+    }
+]

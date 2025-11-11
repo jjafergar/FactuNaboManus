@@ -1,0 +1,26 @@
+[
+    {
+        "id": "25030",
+        "empresa": "aBalados Services, S.L.",
+        "status": "ÉXITO",
+        "details": {
+            "estado_envio_facturantia": "CORRECTO",
+            "tipo_sif": "VERIFACTU",
+            "verifactu_total_facturas_enviadas": 1,
+            "verifactu_total_facturas_correctas": 1,
+            "verifactu_total_facturas_aceptadas_con_errores": 0,
+            "verifactu_total_facturas_rechazadas": 0,
+            "numeros_facturas": {
+                "25030": "25009"
+            },
+            "enlaces_qr": {
+                "25030": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=B91938662&numserie=25009&fecha=11-11-2025&importe=21965.13"
+            }
+        },
+        "pdf_url": "https://www.facturantia.com/ver_afc_api.php?auid=762687769&aen=aBalados%20Services%2C%20S.L.&aej=2025&aeid=25030&acn=B65166779",
+        "enlace_qr": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=B91938662&numserie=25009&fecha=11-11-2025&importe=21965.13",
+        "cliente": "C2C Inver Park, S.L.",
+        "importe": 21965.13,
+        "pdf_local_path": "C:/Users/administracionaba/Desktop/FACTURANTIA/Facturas en PDF\\25030 - C2C Inver Park, S.L. - 21.965,13 €.pdf"
+    }
+]

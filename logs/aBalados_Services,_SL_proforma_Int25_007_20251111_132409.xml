@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<proformas>
+    <proforma>
+        <external_id>Int25_007</external_id>
+        <serie_factura>Int25_</serie_factura>
+        <fecha_emision>2025-11-11</fecha_emision>
+        <fecha_vencimiento>2025-11-11</fecha_vencimiento>
+        <descripcion_general>Liquidación intereses Amortización Anticipada</descripcion_general>
+        <permitir_email_y_afc>1</permitir_email_y_afc>
+        <literales_legales>Operación exenta de IVA (art. 20.Uno.18 Ley 37/1992).</literales_legales>
+        <referencia>Int25_007</referencia>
+        <tipo_factura>F1</tipo_factura>
+        <texto_libre/>
+        <plantilla_facturas_emitidas/>
+        <plantilla_facturas_proforma/>
+        <ejercicio>2025</ejercicio>
+        <cliente>
+            <tipo_persona>J</tipo_persona>
+            <nombre>Piquito Olé S.L.</nombre>
+            <tipo_documento>nif</tipo_documento>
+            <numero_documento>B90482050</numero_documento>
+            <cuenta_contable>4300000</cuenta_contable>
+            <observacion/>
+            <tipo_residencia>R</tipo_residencia>
+            <codigo_pais>ESP</codigo_pais>
+            <provincia>Sevilla</provincia>
+            <poblacion>Sevilla</poblacion>
+            <domicilio>c/ Virgen de Luján 3, 2A</domicilio>
+            <domicilio_2/>
+            <cp>41011</cp>
+            <telefono/>
+            <email/>
+        </cliente>
+        <conceptos>
+            <concepto>
+                <descripcion>Liquidación intereses Amortización Anticipada</descripcion>
+                <categoria>SERVICIOS</categoria>
+                <cuenta_contable>7050000</cuenta_contable>
+                <unidad_medida>01</unidad_medida>
+                <descripcion_larga/>
+                <unidades>1</unidades>
+                <base_unidad>182.94</base_unidad>
+                <fiscalidad_especial>
+                    <clave_regimen>01</clave_regimen>
+                    <tipo>E1</tipo>
+                    <justificacion>Operación exenta de IVA (art. 20.Uno.18 LIVA).</justificacion>
+                </fiscalidad_especial>
+                <impuestos_retenidos>
+                    <impuesto_retenido>
+                        <impuesto>IRPF</impuesto>
+                        <porcentaje>19</porcentaje>
+                        <base_imponible>182.94</base_imponible>
+                        <importe>34.76</importe>
+                    </impuesto_retenido>
+                </impuestos_retenidos>
+                <total_impuestos_retenidos>34.76</total_impuestos_retenidos>
+                <total_impuestos_repercutidos>0</total_impuestos_repercutidos>
+                <importe_bruto>182.94</importe_bruto>
+                <base_imponible>182.94</base_imponible>
+                <importe_total>148.18</importe_total>
+            </concepto>
+        </conceptos>
+        <conceptos_textos>
+            <concepto_texto>
+                <posicion>1</posicion>
+                <descripcion>Fecha constitución 18/02/2020</descripcion>
+            </concepto_texto>
+            <concepto_texto>
+                <posicion>2</posicion>
+                <descripcion>Novación con fecha 03/01/2022</descripcion>
+            </concepto_texto>
+            <concepto_texto>
+                <posicion>3</posicion>
+                <descripcion>Tipo de Interés 1.5% según contrato</descripcion>
+            </concepto_texto>
+            <concepto_texto>
+                <posicion>4</posicion>
+                <descripcion>Amortización capital: 15.625,00</descripcion>
+            </concepto_texto>
+            <concepto_texto>
+                <posicion>5</posicion>
+                <descripcion>Exento de IVA según art. 20.Uno.18 Ley 37/1992</descripcion>
+            </concepto_texto>
+        </conceptos_textos>
+        <impuestos_retenidos>
+            <impuesto_retenido>
+                <impuesto>IRPF</impuesto>
+                <porcentaje>19</porcentaje>
+                <importe>34.76</importe>
+                <base_imponible>182.94</base_imponible>
+            </impuesto_retenido>
+        </impuestos_retenidos>
+        <importe_bruto>182.94</importe_bruto>
+        <total_importe_bruto>182.94</total_importe_bruto>
+        <total_impuestos_repercutidos>0</total_impuestos_repercutidos>
+        <total_impuestos_retenidos>34.76</total_impuestos_retenidos>
+        <importe_total>148.18</importe_total>
+        <total_subvenciones>0</total_subvenciones>
+        <total_anticipos>0</total_anticipos>
+        <total_a_pagar>148.18</total_a_pagar>
+        <total_suplidos>0</total_suplidos>
+        <total_gastos_financieros>0</total_gastos_financieros>
+        <total_retencion>34.76</total_retencion>
+        <total_pagos_especie>0</total_pagos_especie>
+        <total_a_ejecutar>148.18</total_a_ejecutar>
+        <forma_pago>
+            <metodo>transferencia</metodo>
+            <transferencia_banco>ABANCA</transferencia_banco>
+            <transferencia_beneficiario>aBalados Services, S.L.</transferencia_beneficiario>
+            <transferencia_concepto>Pago Factura</transferencia_concepto>
+            <transferencia_iban>ES1100817069270001227724</transferencia_iban>
+            <transferencia_bic>CAGLESMMXXX</transferencia_bic>
+        </forma_pago>
+    </proforma>
+</proformas>

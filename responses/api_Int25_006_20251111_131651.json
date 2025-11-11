@@ -1,0 +1,14 @@
+{
+    "estado_envio_facturantia": "CORRECTO",
+    "tipo_sif": "VERIFACTU",
+    "verifactu_total_facturas_enviadas": 1,
+    "verifactu_total_facturas_correctas": 1,
+    "verifactu_total_facturas_aceptadas_con_errores": 0,
+    "verifactu_total_facturas_rechazadas": 0,
+    "numeros_facturas": {
+        "Int25_006": "Int25_003"
+    },
+    "enlaces_qr": {
+        "Int25_006": "https:\/\/prewww2.aeat.es\/wlpl\/TIKE-CONT\/ValidarQR?nif=B91938662&numserie=Int25_003&fecha=11-11-2025&importe=182.94"
+    }
+}

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<proformas>
+    <proforma>
+        <external_id>25031</external_id>
+        <serie_factura>25</serie_factura>
+        <fecha_emision>2025-11-11</fecha_emision>
+        <fecha_vencimiento>2025-11-11</fecha_vencimiento>
+        <descripcion_general>· 30/04/2025 - Plataforma JLG 510 AJ ARTICULADA DIÉSEL 18 M (JJ Bastidas e Hijos SL) | · 30/06/2025 - Plataforma JLG 510 AJ ARTICULADA DIÉSEL 18 M (JJ Bastidas e Hijos SL)</descripcion_general>
+        <permitir_email_y_afc>1</permitir_email_y_afc>
+        <literales_legales/>
+        <referencia>25031</referencia>
+        <tipo_factura>F1</tipo_factura>
+        <texto_libre/>
+        <plantilla_facturas_emitidas/>
+        <plantilla_facturas_proforma/>
+        <ejercicio>2025</ejercicio>
+        <cliente>
+            <tipo_persona>J</tipo_persona>
+            <nombre>Desarrollos Fotovoltaicos Mas del Bou, S.L.</nombre>
+            <tipo_documento>nif</tipo_documento>
+            <numero_documento>B12817508</numero_documento>
+            <cuenta_contable>4300000</cuenta_contable>
+            <observacion/>
+            <tipo_residencia>R</tipo_residencia>
+            <codigo_pais>ESP</codigo_pais>
+            <provincia>28703, San Sebastián</provincia>
+            <poblacion>28703, San Sebastián de los Reyes</poblacion>
+            <domicilio>Avda. Matapiñonera 11, Edif.2 - Oficina 114-115</domicilio>
+            <domicilio_2/>
+            <cp/>
+            <telefono/>
+            <email/>
+        </cliente>
+        <conceptos>
+            <concepto>
+                <descripcion>· 30/04/2025 - Plataforma JLG 510 AJ ARTICULADA DIÉSEL 18 M (JJ Bastidas e Hijos SL)</descripcion>
+                <categoria>SERVICIOS</categoria>
+                <cuenta_contable>7050000</cuenta_contable>
+                <unidad_medida>01</unidad_medida>
+                <descripcion_larga/>
+                <unidades>1</unidades>
+                <base_unidad>165.80</base_unidad>
+                <impuestos_repercutidos>
+                    <impuesto_repercutido>
+                        <impuesto>IVA</impuesto>
+                        <porcentaje>21</porcentaje>
+                        <importe>34.82</importe>
+                        <base_imponible>165.80</base_imponible>
+                        <recargo_equivalencia_importe>0</recargo_equivalencia_importe>
+                        <importe_especial>0</importe_especial>
+                        <importe_total>34.82</importe_total>
+                    </impuesto_repercutido>
+                </impuestos_repercutidos>
+                <total_impuestos_retenidos>0</total_impuestos_retenidos>
+                <total_impuestos_repercutidos>34.82</total_impuestos_repercutidos>
+                <importe_bruto>165.80</importe_bruto>
+                <base_imponible>165.80</base_imponible>
+                <importe_total>200.62</importe_total>
+            </concepto>
+            <concepto>
+                <descripcion>· 30/06/2025 - Plataforma JLG 510 AJ ARTICULADA DIÉSEL 18 M (JJ Bastidas e Hijos SL)</descripcion>
+                <categoria>SERVICIOS</categoria>
+                <cuenta_contable>7050000</cuenta_contable>
+                <unidad_medida>01</unidad_medida>
+                <descripcion_larga/>
+                <unidades>1</unidades>
+                <base_unidad>165</base_unidad>
+                <impuestos_repercutidos>
+                    <impuesto_repercutido>
+                        <impuesto>IVA</impuesto>
+                        <porcentaje>21</porcentaje>
+                        <importe>34.65</importe>
+                        <base_imponible>165</base_imponible>
+                        <recargo_equivalencia_importe>0</recargo_equivalencia_importe>
+                        <importe_especial>0</importe_especial>
+                        <importe_total>34.65</importe_total>
+                    </impuesto_repercutido>
+                </impuestos_repercutidos>
+                <total_impuestos_retenidos>0</total_impuestos_retenidos>
+                <total_impuestos_repercutidos>34.65</total_impuestos_repercutidos>
+                <importe_bruto>165</importe_bruto>
+                <base_imponible>165</base_imponible>
+                <importe_total>199.65</importe_total>
+            </concepto>
+        </conceptos>
+        <conceptos_textos>
+            <concepto_texto>
+                <posicion>0</posicion>
+                <descripcion>Servicios extraordinarios - Operación &amp; Mantenimiento</descripcion>
+            </concepto_texto>
+            <concepto_texto>
+                <posicion>1</posicion>
+                <descripcion>Acceso a cubierta - Alquiler plataforma</descripcion>
+            </concepto_texto>
+        </conceptos_textos>
+        <impuestos_repercutidos>
+            <impuesto_repercutido>
+                <impuesto>IVA</impuesto>
+                <porcentaje>21</porcentaje>
+                <importe>69.47</importe>
+                <base_imponible>330.80</base_imponible>
+                <recargo_equivalencia_importe>0</recargo_equivalencia_importe>
+                <importe_especial>0</importe_especial>
+                <importe_total>69.47</importe_total>
+            </impuesto_repercutido>
+        </impuestos_repercutidos>
+        <importe_bruto>330.80</importe_bruto>
+        <total_importe_bruto>330.80</total_importe_bruto>
+        <total_impuestos_repercutidos>69.47</total_impuestos_repercutidos>
+        <total_impuestos_retenidos>0</total_impuestos_retenidos>
+        <importe_total>400.27</importe_total>
+        <total_subvenciones>0</total_subvenciones>
+        <total_anticipos>0</total_anticipos>
+        <total_a_pagar>400.27</total_a_pagar>
+        <total_suplidos>0</total_suplidos>
+        <total_gastos_financieros>0</total_gastos_financieros>
+        <total_retencion>0</total_retencion>
+        <total_pagos_especie>0</total_pagos_especie>
+        <total_a_ejecutar>400.27</total_a_ejecutar>
+        <forma_pago>
+            <metodo>transferencia</metodo>
+            <transferencia_banco>ABANCA</transferencia_banco>
+            <transferencia_beneficiario>aBalados Services, S.L.</transferencia_beneficiario>
+            <transferencia_concepto>Pago Factura</transferencia_concepto>
+            <transferencia_iban>ES8520803509113040096171</transferencia_iban>
+            <transferencia_bic>CAGLESMMXXX</transferencia_bic>
+        </forma_pago>
+    </proforma>
+</proformas>

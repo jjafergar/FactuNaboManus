@@ -1,0 +1,1051 @@
+/* styles.qss - Modern iOS 18 / macOS Sequoia / Material Design 3 inspired */
+
+/* ──────────────────────────────────────────────────────────────
+   🎛️  GLOBAL: Tipografías y fondo
+   - Cambia la FUENTE por defecto aquí (font-family / font-size).
+────────────────────────────────────────────────────────────── */
+* {
+    /* --- MODIFICACIÓN DE FUENTE --- */
+    font-family: "Segoe UI Variable", sans-serif; /* <-- FUENTE SUGERIDA */
+    font-size: 15px; /* <-- TAMAÑO BASE AUMENTADO */
+    /* --- FIN MODIFICACIÓN --- */
+}
+
+QMainWindow {
+    background-color: #F5F7FA; /* Fondo claro actualizado */
+}
+
+QMainWindow[theme="dark"] {
+    background-color: #0D0F11; /* Vacío Profundo actualizado */
+}
+
+/* 🔧 FIX herencia global en modo oscuro (texto/fondos genéricos) */
+QWidget {
+    background-color: transparent; /* Evita “bloques” claros sueltos */
+}
+QMainWindow[theme="dark"] QWidget {
+    color: #FFFFFF; /* Texto por defecto en oscuro */
+}
+QMainWindow[theme="dark"] QLabel {
+    color: #FFFFFF; /* Labels en oscuro */
+}
+
+/* ──────────────────────────────────────────────────────────────
+   📚  SIDEBAR (barra lateral)
+   - Ajusta colores y borde lateral.
+────────────────────────────────────────────────────────────── */
+QWidget[class="Sidebar"] {
+    background-color: rgba(250, 252, 254, 0.72); /* Vidriado claro */
+    /* border-right: 1px solid #E5E5EA; */ /* <-- BORDE ELIMINADO */
+}
+
+QMainWindow[theme="dark"] QWidget[class="Sidebar"] {
+    background-color: rgba(28, 30, 32, 0.60); /* Aero-Glass más translúcido */
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🧭  NAVIGATION LIST (menú de secciones)
+   - Cambia la selección/hover y el padding de cada item.
+────────────────────────────────────────────────────────────── */
+QListWidget[class="NavList"] {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 5px;
+    /* icon-size: 20px; */ /* Comentado/Eliminado si usas Emojis */
+}
+
+QListWidget[class="NavList"]::item {
+    background-color: transparent;
+    color: #000000;
+    border-radius: 10px; /* ← Radio de las pastillas del menú */
+    padding: 12px 16px; /* ← Altura y anchura de cada item */
+    /* padding-left: 10px; */ /* Comentado/Eliminado si usas Emojis */
+    margin: 3px 0px;
+    font-size: 15px; /* ← Tamaño del texto del menú */
+    /* Transición suave para animación (si Qt lo soporta) */
+}
+
+/* [MEJORADO] Hover con efecto de crecimiento y oscurecimiento más pronunciado */
+QListWidget[class="NavList"]::item:hover {
+    background-color: rgba(160, 191, 110, 0.30); /* Tinte verde más oscuro */
+    padding: 16px 24px; /* Aumentar padding más para efecto de crecimiento más visible */
+    font-size: 17px; /* Texto más grande */
+    font-weight: 600; /* Texto más grueso */
+    margin: 1px 0px; /* Ajustar margen para compensar el crecimiento */
+}
+
+QListWidget[class="NavList"]::item:selected {
+    background-color: #A0BF6E; /* Verde corporativo original */
+    color: white;
+    font-weight: 600;
+}
+
+QMainWindow[theme="dark"] QListWidget[class="NavList"]::item {
+    color: #FFFFFF;
+}
+
+/* [MEJORADO] Hover con efecto de crecimiento y oscurecimiento más pronunciado (oscuro) */
+QMainWindow[theme="dark"] QListWidget[class="NavList"]::item:hover {
+    background-color: rgba(58, 58, 60, 0.60); /* Gris oscuro para modo oscuro */
+    padding: 16px 24px; /* Aumentar padding más para efecto de crecimiento más visible */
+    font-size: 17px; /* Texto más grande */
+    font-weight: 600; /* Texto más grueso */
+    margin: 1px 0px; /* Ajustar margen para compensar el crecimiento */
+}
+
+QMainWindow[theme="dark"] QListWidget[class="NavList"]::item:selected {
+    background-color: #3A3A3C; /* Gris oscuro para modo oscuro */
+    color: #FFFFFF; /* Texto blanco para contraste */
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🧱  CONTENT STACK (zona principal)
+   ────────────────────────────────────────────────────────────── */
+QStackedWidget[class="ContentStack"] {
+    background-color: #F5F7FA;
+}
+
+QMainWindow[theme="dark"] QStackedWidget[class="ContentStack"] {
+    background-color: #0D0F11;
+}
+
+/* [NUEVA CORRECCIÓN] Forzar estilo del QSplitter para ocultar cualquier borde/fondo residual */
+QSplitter {
+    background-color: #F5F7FA; /* Mismo color que ContentStack */
+    border: none; /* Asegurar que no tenga borde propio */
+}
+
+QMainWindow[theme="dark"] QSplitter {
+    background-color: #0D0F11; /* Mismo color que ContentStack (oscuro) */
+    border: none;
+}
+
+/* [REVISADO] FIX QSplitter handle (haciéndolo completamente invisible) */
+QSplitter::handle {
+    background: transparent;
+    border: none;
+    width: 0px;              /* Ancho explícito 0 */
+    margin: 0;
+    padding: 0;
+    image: none;             /* Sin imagen de fondo */
+}
+/* No necesitamos la regla específica para dark si es transparente */
+
+
+/* ──────────────────────────────────────────────────────────────
+   🧮  STAT CARDS (tarjetas de métricas)
+   - Ajusta el borde, radio y relleno.
+────────────────────────────────────────────────────────────── */
+QFrame[class="StatCard"] {
+    background-color: rgba(255, 255, 255, 0.88); /* Vidriado */
+    border-radius: 16px; /* ← Radio de las tarjetas */
+    padding: 20px; /* ← Relleno interno de las tarjetas */
+    /* [MODIFICADO] Borde eliminado para efecto "flotante" */
+    /* border: 1px solid #E5E5EA; */
+}
+
+QMainWindow[theme="dark"] QFrame[class="StatCard"] {
+    background-color: rgba(28, 30, 32, 0.60); /* Aero-Glass */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 22px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🔘  ANIMATED BUTTON (botón primario)
+   - Cambia colores, radio y tamaños.
+────────────────────────────────────────────────────────────── */
+QPushButton[class="AnimatedButton"] {
+    background-color: #A0BF6E; /* Verde corporativo original */
+    color: white !important; /* Forzar color blanco del texto */
+    border-radius: 12px;       /* ← Radio del botón */
+    padding: 16px 50px; /* Padding aumentado significativamente para dar más espacio al texto */
+    font-weight: 600;
+    font-size: 15px;
+    min-width: 200px; /* Ancho mínimo para evitar cortes en textos largos */
+}
+
+/* [MEJORADO] Hover con efecto de crecimiento y oscurecimiento más pronunciado */
+QPushButton[class="AnimatedButton"]:hover {
+    background-color: #87a15D; /* ← Hover más oscuro */
+    padding: 18px 54px; /* Aumentar padding más para efecto de crecimiento más visible */
+    font-size: 16px; /* Texto un poco más grande */
+    font-weight: 700; /* Texto más grueso */
+    min-width: 220px; /* Ancho mínimo aumentado en hover */
+}
+
+QPushButton[class="AnimatedButton"]:pressed {
+    background-color: #7A9154; /* ← Pressed */
+}
+
+QPushButton[class="AnimatedButton"]:disabled {
+    background-color: #C7C7CC;
+    color: #8E8E93;
+    /* La lógica de deshabilitar sombra debe ir en Python */
+}
+
+QMainWindow[theme="dark"] QPushButton[class="AnimatedButton"] {
+    background-color: #2C2C2E !important; /* Gris oscuro que combina con el tema oscuro - !important para sobrescribir estilos inline */
+    color: #FFFFFF !important; /* Texto blanco para contraste */
+    border: 1px solid #3A3A3C !important; /* Borde sutil para definición */
+    padding: 16px 50px; /* Padding aumentado significativamente para dar más espacio al texto */
+    font-weight: 600;
+    font-size: 15px;
+    min-width: 200px; /* Ancho mínimo para evitar cortes en textos largos */
+}
+
+QMainWindow[theme="dark"] QPushButton[class="AnimatedButton"]:hover {
+    background-color: #3A3A3C !important; /* Gris más claro en hover */
+    border: 1px solid #48484A !important; /* Borde más visible en hover */
+    padding: 18px 54px; /* Aumentar padding más para efecto de crecimiento más visible */
+    font-size: 16px; /* Texto más grande */
+    font-weight: 700; /* Texto más grueso */
+    min-width: 220px; /* Ancho mínimo aumentado en hover */
+}
+
+QMainWindow[theme="dark"] QPushButton[class="AnimatedButton"]:disabled {
+    background-color: #3A3A3C;
+    color: #48484A;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🏷️  STATUS CHIP (píldoras de estado)
+   - “success”, “warning” y “error” (en tu CSS usabas “NABO!” para error).
+────────────────────────────────────────────────────────────── */
+QLabel[class="StatusChip"] {
+    border-radius: 13px;
+    padding: 4px 14px;
+    font-weight: 600;
+    font-size: 12px;
+    min-width: 80px;
+    max-height: 26px;
+}
+
+QLabel[class="StatusChip"][status="success"] {
+    background-color: #21C55D;
+    color: white;
+}
+
+QLabel[class="StatusChip"][status="warning"] {
+    background-color: #F59E0B;
+    color: white;
+}
+
+QLabel[class="StatusChip"][status="NABO!"] {
+    background-color: #EF4444;
+    color: white;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   📋  MODERN TABLE (tablas y cabeceras)
+   - Cambia radios, colores, y estados de selección.
+────────────────────────────────────────────────────────────── */
+QTableWidget[class="ModernTable"] {
+    background-color: transparent;           /* lo pinta TableCard */
+    border: none;                            /* sin borde propio */
+    border-radius: 16px;
+    gridline-color: #F2F2F7;
+    selection-background-color: rgba(160, 191, 110, 0.2); /* Tinte primario */
+    outline: none;
+}
+
+/* Redondear el área de datos (viewport) para que se vea el radio inferior */
+QTableWidget[class="ModernTable"]::viewport {
+    background: transparent;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+QTableWidget[class="ModernTable"]::item {
+    padding: 8px;
+    border: none;
+}
+
+QTableWidget[class="ModernTable"]::item:selected {
+    background-color: rgba(160, 191, 110, 0.3); /* Tinte primario */
+}
+
+/* [MEJORA UI] Hover más evidente */
+QTableWidget[class="ModernTable"]::item:hover {
+    background-color: rgba(160, 191, 110, 0.15); /* Tinte primario (un poco más opaco) */
+}
+
+QTableWidget[class="ModernTable"] QHeaderView::section {
+    background-color: transparent;
+    color: #000000;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #E5E5EA;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+QMainWindow[theme="dark"] QTableWidget[class="ModernTable"] {
+    background-color: transparent;
+    border: none;
+    border-radius: 22px;
+    gridline-color: #2C2C2E;
+    selection-background-color: rgba(10, 132, 255, 0.2);
+}
+
+QMainWindow[theme="dark"] QTableWidget[class="ModernTable"]::viewport {
+    background: transparent;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+}
+
+QMainWindow[theme="dark"] QTableWidget[class="ModernTable"]::item {
+    color: #FFFFFF;
+}
+
+QMainWindow[theme="dark"] QTableWidget[class="ModernTable"]::item:selected {
+    background-color: rgba(10, 132, 255, 0.3);
+}
+
+/* [MEJORA UI] Hover más evidente (oscuro) */
+QMainWindow[theme="dark"] QTableWidget[class="ModernTable"]::item:hover {
+    background-color: rgba(255, 255, 255, 0.08); /* Blanco translúcido */
+}
+
+QMainWindow[theme="dark"] QTableWidget[class="ModernTable"] QHeaderView::section {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom: 1px solid #38383A;
+}
+
+/* Bordes redondeados para las cabeceras */
+QTableWidget[class="ModernTable"] QHeaderView::section:first-child {
+    border-top-left-radius: 16px;
+}
+
+QTableWidget[class="ModernTable"] QHeaderView::section:last-child {
+    border-top-right-radius: 16px;
+}
+
+/* Esquina superior-izquierda donde se cruzan cabeceras (hace visible el radio) */
+QTableCornerButton::section {
+    background: transparent;
+    border: none;
+    border-top-left-radius: 16px;
+}
+QMainWindow[theme="dark"] QTableCornerButton::section {
+    background: transparent;
+    border: none;
+    border-top-left-radius: 22px;
+}
+/* ──────────────────────────────────────────────────────────────
+   🔤  LINE EDIT (entradas de texto de una línea)
+   - Ajusta bordes, focus y placeholders.
+────────────────────────────────────────────────────────────── */
+QLineEdit {
+    background-color: white;
+    border: 1px solid #E5E5EA;
+    border-radius: 10px; /* ← Radio de inputs */
+    padding: 10px 14px; /* ← Relleno interno */
+    color: #000000;
+    font-size: 15px;
+}
+
+/* [MODIFICADO] Foco más sutil, usando 1px del color primario */
+QLineEdit:focus {
+    border: 1px solid #A0BF6E;
+    padding: 10px 14px; /* Mismo padding, sin salto */
+}
+
+QLineEdit::placeholder {
+    color: #8E8E93;
+}
+
+QMainWindow[theme="dark"] QLineEdit {
+    background-color: #1C1C1E;
+    border: 1px solid #38383A;
+    color: #FFFFFF;
+}
+
+/* [MODIFICADO] Foco más sutil (oscuro) */
+QMainWindow[theme="dark"] QLineEdit:focus {
+    border: 1px solid #0A84FF;
+    padding: 10px 14px;
+}
+
+QMainWindow[theme="dark"] QLineEdit::placeholder {
+    color: #636366;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   📝  TEXT EDIT (área de log/editor multiparárafo)
+   ────────────────────────────────────────────────────────────── */
+QTextEdit {
+    background-color: white;
+    border: 1px solid #E5E5EA;
+    border-radius: 10px;
+    padding: 10px;
+    color: #000000;
+    font-size: 13px;
+    font-family: "SF Mono", "Consolas", monospace; /* Fuente monoespaciada del log */
+}
+
+QMainWindow[theme="dark"] QTextEdit {
+    background-color: #1C1C1E;
+    border: 1px solid #38383A;
+    color: #FFFFFF;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   📈  PROGRESS BAR (barra de progreso)
+   ────────────────────────────────────────────────────────────── */
+QProgressBar {
+    height: 8px; /* ← Altura de la barra */
+    border-radius: 4px; /* ← Radio de la barra */
+    background-color: #E5E5EA;
+    text-align: center;
+    border: none;
+}
+
+QProgressBar::chunk {
+    /* [MODIFICADO] Usamos el color primario */
+    background-color: #A0BF6E; /* Verde corporativo original */
+    border-radius: 4px;
+}
+
+QMainWindow[theme="dark"] QProgressBar {
+    background-color: #2C2C2E;
+}
+
+QMainWindow[theme="dark"] QProgressBar::chunk {
+    background-color: #5AC8FA; /* Cian brillante (mantener para dark) */
+}
+
+/* ──────────────────────────────────────────────────────────────
+   ✅  CHECKBOX (incluye el toggle de Modo Oscuro)
+   ────────────────────────────────────────────────────────────── */
+QCheckBox {
+    color: #000000;
+    spacing: 8px;
+    font-size: 14px;
+}
+
+QCheckBox::indicator {
+    width: 20px; /* ← Tamaño del cuadrado */
+    height: 20px;
+    border-radius: 6px; /* ← Radio del cuadrado */
+    border: 2px solid #C7C7CC;
+    background-color: white;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #A0BF6E; /* Color primario */
+    border: 2px solid #A0BF6E;
+    /* Icono ✓ en base64 (SVG) */
+    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMiAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMSA1TDQuNSA4LjVMMTEgMSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=);
+}
+
+QMainWindow[theme="dark"] QCheckBox {
+    color: #FFFFFF;
+}
+
+QMainWindow[theme="dark"] QCheckBox::indicator {
+    border: 2px solid #48484A;
+    background-color: #1C1C1E;
+}
+
+QMainWindow[theme="dark"] QCheckBox::indicator:checked {
+    background-color: #0A84FF;
+    border: 2px solid #0A84FF;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🔎  FILTER BUTTONS (chips de filtro de resultados)
+   ────────────────────────────────────────────────────────────── */
+QPushButton[filter="true"] {
+    border: none;
+    border-radius: 10px; /* ← Radio de las pastillas de filtro */
+    padding: 8px 16px;
+    font-weight: 600;
+    color: white;
+    font-size: 13px;
+}
+
+QPushButton[filter="true"][status="ÉXITO"] {
+    background-color: #34C759;
+}
+
+QPushButton[filter="true"][status="DUPLICADO"] {
+    background-color: #FF9500;
+}
+
+QPushButton[filter="true"][status="ERROR"] {
+    background-color: #FF3B30;
+}
+
+QPushButton[filter="true"]:hover {
+    opacity: 0.9;
+    padding: 10px 22px; /* Aumentar padding más para efecto de crecimiento más visible */
+    font-size: 15px; /* Texto más grande */
+    font-weight: 700; /* Texto más grueso */
+}
+
+QPushButton[filter="true"]:checked {
+    opacity: 1;
+    border: 3px solid white;
+}
+
+QMainWindow[theme="dark"] QPushButton[filter="true"]:checked {
+    border: 3px solid #000000;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🪜  STEPPER (círculos y línea de progreso de pasos)
+   ────────────────────────────────────────────────────────────── */
+QLabel[class="StepCircle"] {
+    border-radius: 20px; /* ← Tamaño viene de la vista; aquí solo radio */
+    font-weight: 700;
+    font-size: 16px;
+}
+
+QLabel[class="StepCircle"][state="pending"] {
+    background-color: #E5E5EA;
+    color: #8E8E93;
+    border: 2px solid #E5E5EA;
+}
+
+QLabel[class="StepCircle"][state="active"] {
+    background-color: #A0BF6E; /* Color primario */
+    color: white;
+    border: 2px solid #A0BF6E;
+}
+
+QLabel[class="StepCircle"][state="completed"] {
+    background-color: #34C759;
+    color: white;
+    border: 2px solid #34C759;
+}
+
+QMainWindow[theme="dark"] QLabel[class="StepCircle"][state="pending"] {
+    background-color: #2C2C2E;
+    color: #636366;
+    border: 2px solid #38383A;
+}
+
+QMainWindow[theme="dark"] QLabel[class="StepCircle"][state="active"] {
+    background-color: #0A84FF;
+    border: 2px solid #0A84FF;
+}
+
+QMainWindow[theme="dark"] QLabel[class="StepCircle"][state="completed"] {
+    background-color: #34C759; /* Mantenemos verde para completado */
+    border: 2px solid #34C759;
+}
+
+
+QLabel[class="StepLabel"] {
+    color: #8E8E93;
+    font-size: 12px; /* ← Tamaño del texto bajo el círculo */
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+QMainWindow[theme="dark"] QLabel[class="StepLabel"] {
+    color: #636366;
+}
+
+QFrame[class="StepLine"][state="pending"] {
+    background-color: #E5E5EA;
+}
+
+QFrame[class="StepLine"][state="completed"] {
+    background-color: #34C759;
+}
+
+QMainWindow[theme="dark"] QFrame[class="StepLine"][state="pending"] {
+    background-color: #2C2C2E;
+}
+
+QMainWindow[theme="dark"] QFrame[class="StepLine"][state="completed"] {
+    background-color: #34C759; /* Mantenemos verde para completado */
+}
+
+
+/* ──────────────────────────────────────────────────────────────
+   🔔  TOAST NOTIFICATION (notificación flotante)
+   - Ajusta radios, padding y color de fondo.
+────────────────────────────────────────────────────────────── */
+QLabel#toast {
+    background-color: rgba(28, 28, 30, 0.95);
+    color: white;
+    border-radius: 14px;
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+QMainWindow[theme="dark"] QLabel#toast {
+    background-color: rgba(58, 58, 60, 0.95);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🧰  TOOL BUTTON (botón icono de acciones)
+   ────────────────────────────────────────────────────────────── */
+QToolButton {
+    background-color: transparent;
+    border: none;
+    font-size: 20px; /* ← Tamaño del icono de toolbutton */
+    padding: 5px;
+    border-radius: 6px;
+}
+
+QToolButton:hover {
+    background-color: rgba(160, 191, 110, 0.15); /* Tinte verde corporativo */
+}
+
+QMainWindow[theme="dark"] QToolButton:hover {
+    background-color: rgba(10, 132, 255, 0.15); /* Tinte azul primario oscuro */
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🪟  DIALOGS (cuadros de diálogo y del sistema)
+   ────────────────────────────────────────────────────────────── */
+
+/* Fondo y texto de cualquier QDialog */
+QDialog {
+    background-color: #FFFFFF;     /* ← Evita el “cuadro negro” */
+    color: #000000;
+    border-radius: 14px;
+}
+
+QMainWindow[theme="dark"] QDialog,
+QDialog[theme="dark"] {
+    background-color: #1C1C1E;     /* ← Fondo oscuro consistente */
+    color: #FFFFFF;
+}
+
+/* Estilado específico para cuadros del sistema: QMessageBox y QInputDialog */
+QMessageBox, QInputDialog {
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 14px;
+}
+QMainWindow[theme="dark"] QMessageBox,
+QMainWindow[theme="dark"] QInputDialog,
+QMessageBox[theme="dark"],
+QInputDialog[theme="dark"] {
+    background-color: #1C1C1E;
+    color: #FFFFFF;
+}
+
+/* Botones dentro de diálogos del sistema */
+QMessageBox QPushButton, QInputDialog QPushButton {
+    background-color: #E5E5EA;
+    color: #000000;
+    border-radius: 10px;
+    padding: 8px 18px;
+    font-weight: 600;
+}
+QMessageBox QPushButton:hover, QInputDialog QPushButton:hover {
+    background-color: #D1D1D6;
+}
+QMainWindow[theme="dark"] QMessageBox QPushButton,
+QMainWindow[theme="dark"] QInputDialog QPushButton,
+QMessageBox[theme="dark"] QPushButton,
+QInputDialog[theme="dark"] QPushButton {
+    background-color: #2C2C2E;
+    color: #FFFFFF;
+}
+QMainWindow[theme="dark"] QMessageBox QPushButton:hover,
+QMainWindow[theme="dark"] QInputDialog QPushButton:hover,
+QMessageBox[theme="dark"] QPushButton:hover,
+QInputDialog[theme="dark"] QPushButton:hover {
+    background-color: #3A3A3C;
+}
+
+/* Botones del QColorDialog - reducir tamaño de fuente para evitar cortes */
+QColorDialog QPushButton {
+    background-color: #E5E5EA;
+    color: #000000;
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-weight: 600;
+    font-size: 12px; /* Tamaño de fuente reducido */
+    min-width: 80px; /* Ancho mínimo para evitar cortes */
+}
+QColorDialog QPushButton:hover {
+    background-color: #D1D1D6;
+    padding: 6px 16px; /* Mantener mismo padding en hover */
+    font-size: 12px; /* Mantener mismo tamaño en hover */
+}
+QMainWindow[theme="dark"] QColorDialog QPushButton,
+QColorDialog[theme="dark"] QPushButton {
+    background-color: #2C2C2E;
+    color: #FFFFFF;
+    padding: 6px 16px;
+    font-size: 12px;
+    min-width: 80px;
+}
+QMainWindow[theme="dark"] QColorDialog QPushButton:hover,
+QColorDialog[theme="dark"] QPushButton:hover {
+    background-color: #3A3A3C;
+    padding: 6px 16px;
+    font-size: 12px;
+}
+
+/* Controles habituales dentro de diálogos */
+QDialog QLabel { color: inherit; }
+QDialog QCheckBox { color: inherit; }
+
+QDialog QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5EA;
+    color: #000000;
+}
+QMainWindow[theme="dark"] QDialog QLineEdit,
+QDialog[theme="dark"] QLineEdit {
+    background-color: #1C1C1E;
+    border: 1px solid #38383A;
+    color: #FFFFFF;
+}
+QMainWindow[theme="dark"] QDialog QLineEdit::placeholder,
+QDialog[theme="dark"] QLineEdit::placeholder {
+    color: #636366;
+}
+
+/* Botón primario (AnimatedButton) dentro de diálogos */
+QDialog QPushButton[class="AnimatedButton"] {
+    background-color: #A0BF6E;
+    color: white;
+    padding: 12px 28px; /* Padding aumentado para dar más espacio al texto */
+}
+QDialog QPushButton[class="AnimatedButton"]:hover {
+    background-color: #87a15D;
+    padding: 14px 32px; /* Aumentar padding ligeramente para efecto de crecimiento */
+    font-size: 16px; /* Texto un poco más grande */
+}
+QMainWindow[theme="dark"] QDialog QPushButton[class="AnimatedButton"],
+QDialog[theme="dark"] QPushButton[class="AnimatedButton"] {
+    background-color: #2C2C2E; /* Gris oscuro que combina con el tema oscuro */
+    color: #FFFFFF !important; /* Texto blanco */
+    border: 1px solid #3A3A3C; /* Borde sutil */
+    padding: 16px 50px; /* Padding aumentado significativamente para dar más espacio al texto */
+    font-weight: 600;
+    font-size: 15px;
+    min-width: 200px; /* Ancho mínimo para evitar cortes en textos largos */
+}
+QMainWindow[theme="dark"] QDialog QPushButton[class="AnimatedButton"]:hover,
+QDialog[theme="dark"] QPushButton[class="AnimatedButton"]:hover {
+    background-color: #3A3A3C; /* Gris más claro en hover */
+    border: 1px solid #48484A; /* Borde más visible en hover */
+    padding: 18px 54px; /* Aumentar padding más para efecto de crecimiento más visible */
+    font-size: 16px; /* Texto un poco más grande */
+    font-weight: 700; /* Texto más grueso */
+    min-width: 220px; /* Ancho mínimo aumentado en hover */
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🧵  SCROLLBAR (barra de scroll vertical)
+   ────────────────────────────────────────────────────────────── */
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: #C7C7CC;
+    border-radius: 5px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #8E8E93;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QMainWindow[theme="dark"] QScrollBar::handle:vertical {
+    background: #48484A;
+}
+
+QMainWindow[theme="dark"] QScrollBar::handle:vertical:hover {
+    background: #636366;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   🏷️  TÍTULO de la barra lateral
+   - Modifica la tipografía del logo/título “FactuNabo”.
+────────────────────────────────────────────────────────────── */
+#sidebarTitle {
+    font-size: 24px;  /* ← Tamaño del título del sidebar */
+    font-weight: bold;
+}
+
+/* --- [NUEVO] Logo tematizado para claro/oscuro --- */
+/* (Asegúrate de que los paths sean correctos desde donde ejecutas el script) */
+QLabel#SidebarLogo {
+    /* Carga el logo claro (negro) por defecto */
+    image: url(%%LOGO_LIGHT%%);
+    qproperty-alignment: 'AlignCenter'; /* Centrar imagen */
+    min-width: 100px; /* Asegurar tamaño */
+    min-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+QMainWindow[theme="dark"] QLabel#SidebarLogo {
+    /* Carga el logo oscuro (blanco) en modo oscuro */
+    image: url(%%LOGO_DARK%%);
+}
+
+
+/* =================================================================
+   [NUEVO] EXTENSIONES (añadidas para la Mejora 3)
+   ================================================================= */
+
+/* [MODIFICADO] Contenedor para grupos de configuración con padding aún más reducido */
+QFrame[class="ConfigGroup"] {
+    background-color: rgba(255, 255, 255, 0.88); /* Vidriado */
+    border-radius: 12px;
+    /* padding: 15px 20px; */ /* <-- Valor anterior */
+    padding: 12px 20px; /* Padding vertical más pequeño */
+}
+QMainWindow[theme="dark"] QFrame[class="ConfigGroup"] {
+    background-color: rgba(44, 44, 46, 0.60); /* Aero-Glass */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 22px;
+}
+
+/* [NUEVO] Contenedor para tablas con esquinas redondeadas visibles */
+QFrame[class="TableCard"] {
+    background-color: rgba(255, 255, 255, 0.88);
+    border: 1px solid #E5E5EA;
+    border-radius: 16px;
+    padding: 0px; /* La tabla llena el contenedor */
+}
+QMainWindow[theme="dark"] QFrame[class="TableCard"] {
+    background-color: rgba(28, 30, 32, 0.60);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 22px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   DENSIDAD (Comfort/Compact)
+────────────────────────────────────────────────────────────── */
+QMainWindow[density="compact"] QPushButton {
+    padding: 6px 14px;
+}
+QMainWindow[density="compact"] QPushButton[class="AnimatedButton"] {
+    padding: 8px 18px;
+}
+QMainWindow[density="compact"] QLineEdit,
+QMainWindow[density="compact"] QComboBox {
+    padding: 6px 10px;
+}
+QMainWindow[density="compact"] QTableWidget::item {
+    padding: 4px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   ESPACIADO (Compacto/Normal/Amplio)
+────────────────────────────────────────────────────────────── */
+/* Espaciado compacto */
+QMainWindow[spacing="compacto"] QVBoxLayout,
+QMainWindow[spacing="compacto"] QHBoxLayout {
+    spacing: 6px;
+}
+QMainWindow[spacing="compacto"] QFrame[class="ConfigGroup"] {
+    padding: 8px 16px;
+}
+QMainWindow[spacing="compacto"] QPushButton {
+    padding: 8px 18px;
+    margin: 2px;
+}
+QMainWindow[spacing="compacto"] QPushButton[class="AnimatedButton"] {
+    padding: 12px 40px;
+    margin: 2px;
+}
+
+/* Espaciado normal (por defecto) */
+QMainWindow[spacing="normal"] QVBoxLayout,
+QMainWindow[spacing="normal"] QHBoxLayout {
+    spacing: 12px;
+}
+QMainWindow[spacing="normal"] QFrame[class="ConfigGroup"] {
+    padding: 12px 20px;
+}
+QMainWindow[spacing="normal"] QPushButton {
+    padding: 10px 22px;
+    margin: 4px;
+}
+QMainWindow[spacing="normal"] QPushButton[class="AnimatedButton"] {
+    padding: 16px 50px;
+    margin: 4px;
+}
+
+/* Espaciado amplio */
+QMainWindow[spacing="amplio"] QVBoxLayout,
+QMainWindow[spacing="amplio"] QHBoxLayout {
+    spacing: 20px;
+}
+QMainWindow[spacing="amplio"] QFrame[class="ConfigGroup"] {
+    padding: 18px 28px;
+}
+QMainWindow[spacing="amplio"] QPushButton {
+    padding: 14px 28px;
+    margin: 6px;
+}
+QMainWindow[spacing="amplio"] QPushButton[class="AnimatedButton"] {
+    padding: 20px 60px;
+    margin: 6px;
+}
+
+/* [MODIFICADO] Botón secundario (QPushButton) también reducido */
+QPushButton {
+    background-color: #E5E5EA;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 22px; /* Padding aumentado para dar más espacio al texto */
+    font-weight: 600;
+    font-size: 15px; /* Tamaño base para que el hover funcione */
+}
+QPushButton:hover {
+    background-color: #D1D1D6;
+    padding: 12px 26px; /* Aumentar padding ligeramente para efecto de crecimiento */
+    font-size: 16px; /* Texto un poco más grande */
+    font-weight: 600; /* Texto más grueso */
+}
+QMainWindow[theme="dark"] QPushButton {
+    background-color: #2C2C2E;
+    color: #FFFFFF;
+}
+QMainWindow[theme="dark"] QPushButton:hover {
+    background-color: #3A3A3C;
+    padding: 12px 26px; /* Aumentar padding ligeramente para efecto de crecimiento */
+    font-size: 16px; /* Texto un poco más grande */
+    font-weight: 600; /* Texto más grueso */
+}
+
+
+/* [NUEVO] QComboBox (campo + popup) */
+QComboBox {
+    background-color: white;
+    border: 1px solid #E5E5EA;
+    border-radius: 10px;
+    padding: 8px 12px;
+    color: #000000;
+    font-size: 14px;
+}
+QComboBox:focus {
+    border: 1px solid #A0BF6E; /* Foco primario */
+}
+QComboBox::drop-down {
+    border: none;
+    width: 26px;
+}
+QComboBox::down-arrow {
+    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNCA2TDggMTBMMTIgNiIgc3Ryb2tlPSIjOEM4QzhGIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==);
+    width: 16px;
+    height: 16px;
+}
+QComboBox QAbstractItemView {
+    background: white;
+    border: 1px solid #E5E5EA;
+    selection-background-color: rgba(160, 191, 110, 0.2); /* Tinte primario */
+}
+
+QMainWindow[theme="dark"] QComboBox {
+    background-color: #1C1C1E;
+    border: 1px solid #38383A;
+    color: #FFFFFF;
+}
+QMainWindow[theme="dark"] QComboBox:focus {
+    border: 1px solid #0A84FF; /* Foco primario oscuro */
+}
+QMainWindow[theme="dark"] QComboBox::down-arrow {
+    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNCA2TDggMTBMMTIgNiIgc3Ryb2tlPSIjN0M3QzdEIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==);
+}
+QMainWindow[theme="dark"] QComboBox QAbstractItemView {
+    background: #1C1C1E;
+    border: 1px solid #38383A;
+    selection-background-color: rgba(10, 132, 255, 0.25);
+}
+
+/* [NUEVO] QHeaderView con hover + flechas de ordenación */
+QHeaderView::section:hover {
+    background: #EFEFF4;
+}
+QMainWindow[theme="dark"] QHeaderView::section:hover {
+    background: #3A3A3C;
+}
+QHeaderView::up-arrow   {
+    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOCAxMlY0TTEyIDhMOCA0TDQgOCIgc3Ryb2tlPSIjOEM4QzhGIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==);
+    width: 14px;
+    height: 14px;
+}
+QHeaderView::down-arrow {
+    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOCA0VjEyTTEyIDhMOCA4TDQgOCIgc3Ryb2tlPSIjOEM4QzhGIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==);
+    width: 14px;
+    height: 14px;
+}
+
+/* [NUEVO] Tooltips claros/oscursos */
+QToolTip {
+    background-color: rgba(28, 28, 30, 0.95);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+QMainWindow[theme="dark"] QToolTip {
+    background-color: rgba(58, 58, 60, 0.95);
+}
+
+/* --- [NUEVO] Estilos para Login Moderno --- */
+QFrame#LoginCard {
+    background-color: rgba(255, 255, 255, 0.95); /* Vidriado sutil para integración moderna */
+    border: 1px solid rgba(229, 229, 234, 0.8); /* Borde muy sutil */
+    border-radius: 20px; /* <-- Esquinas más redondeadas */
+    padding: 32px; /* Más padding para evitar corte visual */
+}
+QMainWindow[theme="dark"] QFrame#LoginCard,
+QDialog[theme="dark"] QFrame#LoginCard { /* Asegurar que funcione en el diálogo */
+    background-color: rgba(28, 28, 30, 0.95); /* Vidriado oscuro */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* [NUEVO] Estilo para el botón "Cancelar" del login */
+QPushButton[class="LinkButton"] {
+    background-color: transparent;
+    color: #8E8E93;
+    border: none;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+QPushButton[class="LinkButton"]:hover {
+    background-color: transparent;
+    color: #007AFF; /* Color de enlace hover */
+    text-decoration: underline;
+}
+QMainWindow[theme="dark"] QPushButton[class="LinkButton"],
+QDialog[theme="dark"] QPushButton[class="LinkButton"] {
+    color: #8E8E93;
+}
+QMainWindow[theme="dark"] QPushButton[class="LinkButton"]:hover,
+QDialog[theme="dark"] QPushButton[class="LinkButton"]:hover {
+    color: #0A84FF;
+}
+
+/* --- Added by ChatGPT: icon-only PDF button hover styles --- */
+QToolButton {
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+}
+QToolButton:hover {
+    background: rgba(0,0,0,0.06);
+}
+[theme="dark"] QToolButton:hover {
+    background: rgba(255,255,255,0.08);
+}

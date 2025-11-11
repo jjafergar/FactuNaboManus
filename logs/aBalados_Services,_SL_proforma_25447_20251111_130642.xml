@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<proformas>
+    <proforma>
+        <external_id>25447</external_id>
+        <serie_factura>25</serie_factura>
+        <fecha_emision>2025-11-11</fecha_emision>
+        <fecha_vencimiento>2025-11-11</fecha_vencimiento>
+        <descripcion_general>Honorarios - Contrato O&amp;M 4º Trimestre 2025</descripcion_general>
+        <permitir_email_y_afc>1</permitir_email_y_afc>
+        <literales_legales/>
+        <referencia>25447</referencia>
+        <tipo_factura>F1</tipo_factura>
+        <texto_libre/>
+        <plantilla_facturas_emitidas/>
+        <plantilla_facturas_proforma/>
+        <ejercicio>2025</ejercicio>
+        <cliente>
+            <tipo_persona>J</tipo_persona>
+            <nombre>FP LUX REIO PV ZARAGOZA SL.</nombre>
+            <tipo_documento>nif</tipo_documento>
+            <numero_documento>B99453326</numero_documento>
+            <cuenta_contable>4300000</cuenta_contable>
+            <observacion/>
+            <tipo_residencia>R</tipo_residencia>
+            <codigo_pais>ESP</codigo_pais>
+            <provincia>Sevilla</provincia>
+            <poblacion>Sevilla</poblacion>
+            <domicilio>c/ Las Cruzadas 3A, local D</domicilio>
+            <domicilio_2/>
+            <cp>41004</cp>
+            <telefono/>
+            <email/>
+        </cliente>
+        <conceptos>
+            <concepto>
+                <descripcion>Honorarios - Contrato O&amp;M 4º Trimestre 2025</descripcion>
+                <categoria>SERVICIOS</categoria>
+                <cuenta_contable>7050000</cuenta_contable>
+                <unidad_medida>01</unidad_medida>
+                <descripcion_larga/>
+                <unidades>1</unidades>
+                <base_unidad>26729.90</base_unidad>
+                <impuestos_repercutidos>
+                    <impuesto_repercutido>
+                        <impuesto>IVA</impuesto>
+                        <porcentaje>21</porcentaje>
+                        <importe>5613.28</importe>
+                        <base_imponible>26729.90</base_imponible>
+                        <recargo_equivalencia_importe>0</recargo_equivalencia_importe>
+                        <importe_especial>0</importe_especial>
+                        <importe_total>5613.28</importe_total>
+                    </impuesto_repercutido>
+                </impuestos_repercutidos>
+                <total_impuestos_retenidos>0</total_impuestos_retenidos>
+                <total_impuestos_repercutidos>5613.28</total_impuestos_repercutidos>
+                <importe_bruto>26729.90</importe_bruto>
+                <base_imponible>26729.90</base_imponible>
+                <importe_total>32343.18</importe_total>
+            </concepto>
+        </conceptos>
+        <conceptos_textos>
+            <concepto_texto>
+                <posicion>0</posicion>
+                <descripcion>Proyecto El Marqués - Zaragoza</descripcion>
+            </concepto_texto>
+            <concepto_texto>
+                <posicion>2</posicion>
+                <descripcion>O&amp;M Fee - 4Q2025</descripcion>
+            </concepto_texto>
+            <concepto_texto>
+                <posicion>3</posicion>
+                <descripcion>Fee 7.200€/MWp+IPC aplicable, a fecha 31 de julio de 2025</descripcion>
+            </concepto_texto>
+        </conceptos_textos>
+        <impuestos_repercutidos>
+            <impuesto_repercutido>
+                <impuesto>IVA</impuesto>
+                <porcentaje>21</porcentaje>
+                <importe>5613.28</importe>
+                <base_imponible>26729.90</base_imponible>
+                <recargo_equivalencia_importe>0</recargo_equivalencia_importe>
+                <importe_especial>0</importe_especial>
+                <importe_total>5613.28</importe_total>
+            </impuesto_repercutido>
+        </impuestos_repercutidos>
+        <importe_bruto>26729.90</importe_bruto>
+        <total_importe_bruto>26729.90</total_importe_bruto>
+        <total_impuestos_repercutidos>5613.28</total_impuestos_repercutidos>
+        <total_impuestos_retenidos>0</total_impuestos_retenidos>
+        <importe_total>32343.18</importe_total>
+        <total_subvenciones>0</total_subvenciones>
+        <total_anticipos>0</total_anticipos>
+        <total_a_pagar>32343.18</total_a_pagar>
+        <total_suplidos>0</total_suplidos>
+        <total_gastos_financieros>0</total_gastos_financieros>
+        <total_retencion>0</total_retencion>
+        <total_pagos_especie>0</total_pagos_especie>
+        <total_a_ejecutar>32343.18</total_a_ejecutar>
+        <forma_pago>
+            <metodo>transferencia</metodo>
+            <transferencia_banco>ABANCA</transferencia_banco>
+            <transferencia_beneficiario>aBalados Services, S.L.</transferencia_beneficiario>
+            <transferencia_concepto>Pago Factura</transferencia_concepto>
+            <transferencia_iban>ES8520803509113040096171</transferencia_iban>
+            <transferencia_bic>CAGLESMMXXX</transferencia_bic>
+        </forma_pago>
+    </proforma>
+</proformas>

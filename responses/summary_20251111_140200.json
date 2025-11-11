@@ -1,0 +1,26 @@
+[
+    {
+        "id": "25031",
+        "empresa": "aBalados Services, S.L.",
+        "status": "ÉXITO",
+        "details": {
+            "estado_envio_facturantia": "CORRECTO",
+            "tipo_sif": "VERIFACTU",
+            "verifactu_total_facturas_enviadas": 1,
+            "verifactu_total_facturas_correctas": 1,
+            "verifactu_total_facturas_aceptadas_con_errores": 0,
+            "verifactu_total_facturas_rechazadas": 0,
+            "numeros_facturas": {
+                "25031": "25010"
+            },
+            "enlaces_qr": {
+                "25031": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=B91938662&numserie=25010&fecha=11-11-2025&importe=400.27"
+            }
+        },
+        "pdf_url": "https://www.facturantia.com/ver_afc_api.php?auid=762687769&aen=aBalados%20Services%2C%20S.L.&aej=2025&aeid=25031&acn=B12817508",
+        "enlace_qr": "https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR?nif=B91938662&numserie=25010&fecha=11-11-2025&importe=400.27",
+        "cliente": "Desarrollos Fotovoltaicos Mas del Bou, S.L.",
+        "importe": 400.27,
+        "pdf_local_path": "C:/Users/administracionaba/Desktop/FACTURANTIA/Facturas en PDF\\25031 - Desarrollos Fotovoltaicos Mas del Bou, S.L. - 400,27 €.pdf"
+    }
+]

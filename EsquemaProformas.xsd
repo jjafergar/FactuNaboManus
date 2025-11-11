@@ -1,0 +1,2610 @@
+<?xml version="1.0" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <!-- NIVEL 0 -->
+  <xsd:element name="proformas" type="PROFORMAS_TYPE"/>
+  <xsd:complexType name="PROFORMAS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="proforma" type="PROFORMA_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PROFORMA_TYPE">
+    <xsd:all>
+      <xsd:element name="external_id" type="STRING60_TYPE" minOccurs="0"/>
+      <xsd:element name="serie_factura" type="STRING10_TYPE"/>
+      <xsd:element name="ejercicio" type="STRING4_TYPE"/>
+      <xsd:element name="fecha_emision" type="FECHA_TYPE"/>
+      <xsd:element name="fecha_vencimiento" type="FECHA_TYPE"/>
+      <xsd:element name="fecha_operacion" type="FECHA_TYPE" minOccurs="0"/>
+      <xsd:element name="periodo_fecha_inicio" type="FECHA_TYPE" minOccurs="0"/>
+      <xsd:element name="periodo_fecha_fin" type="FECHA_TYPE" minOccurs="0"/>
+      <xsd:element name="referencia" type="STRING50_TYPE" minOccurs="0"/>
+      <!-- Descripción general: Descripción breve de lo que se está facturando. Campo obligatorio exigido por la AEAT -->
+      <xsd:element name="descripcion_general" type="STRING500_TYPE"/>
+      <xsd:element name="tipo_factura" type="TIPO_FACTURA_TYPE"/>
+      <xsd:element name="factura_simplificada_art_7273" type="BOOL_TYPE" minOccurs="0"/>
+      <xsd:element name="factura_simplificada_art_61d" type="BOOL_TYPE" minOccurs="0"/>
+      <xsd:element name="factura_rectificativa" type="BOOL_TYPE" minOccurs="0"/>
+      <xsd:element name="factura_rectificativa_numero" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="factura_rectificativa_ejercicio" type="STRING4_TYPE" minOccurs="0"/>
+      <xsd:element name="factura_rectificativa_fecha_emision" type="FECHA_TYPE" minOccurs="0"/>
+      <xsd:element name="factura_rectificativa_codigo" type="RECTIFICATIVA_MOTIVO_CODIGO_TYPE" minOccurs="0"/>
+      <xsd:element name="factura_rectificativa_tipo" type="TIPO_RECTIFICATIVA_TYPE" minOccurs="0"/>
+      <xsd:element name="cliente" type="CLIENTE_TYPE"/>    
+      <!-- Permitir email y afc: '1' para permitir enviar la fatura por email. '0' para no permitirlo   -->
+      <xsd:element name="permitir_email_y_afc" type="BOOL_TYPE" minOccurs="0"/>
+      <xsd:element name="conceptos" type="CONCEPTOS_TYPE"/>
+      <!-- Conceptos Textos: Textos que se pueden intercalar entre los conceptos -->
+      <xsd:element name="conceptos_textos" type="CONCEPTOS_TEXTOS_TYPE" minOccurs="0"/>
+      <xsd:element name="importe_bruto" type="FLOAT_TYPE"/>
+      <xsd:element name="descuentos" type="DESCUENTOS_TYPE" minOccurs="0"/>
+      <xsd:element name="cargos" type="CARGOS_TYPE" minOccurs="0"/>
+      <!-- Total Importe Bruto = Importe Bruto - Total Descuentos + Total Cargos -->
+      <xsd:element name="total_importe_bruto" type="FLOAT_TYPE"/>
+      <xsd:element name="impuestos_repercutidos" type="IMPUESTOS_REPERCUTIDOS_TYPE" minOccurs="0"/>
+      <xsd:element name="impuestos_retenidos" type="IMPUESTOS_RETENIDOS_TYPE" minOccurs="0"/>
+      <!-- Importe Total = Total Importe Bruto + Total Impuestos Repercutidos - Total Impuestos Retenidos -->
+      <xsd:element name="importe_total" type="FLOAT_TYPE"/>
+      <xsd:element name="subvenciones" type="SUBVENCIONES_TYPE" minOccurs="0"/>
+      <xsd:element name="anticipos" type="ANTICIPOS_TYPE" minOccurs="0"/>
+      <xsd:element name="suplidos" type="SUPLIDOS_TYPE" minOccurs="0"/>
+      <xsd:element name="gastos_financieros" type="GASTOS_FINANCIEROS_TYPE" minOccurs="0"/>
+      <xsd:element name="retencion" type="RETENCION_TYPE" minOccurs="0"/>
+      <xsd:element name="pagos_especie" type="PAGOS_ESPECIE_TYPE" minOccurs="0"/>
+      <xsd:element name="forma_pago" type="FORMA_PAGO_TYPE"/>
+      <xsd:element name="total_descuentos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_cargos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_impuestos_repercutidos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_impuestos_retenidos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_subvenciones" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_anticipos" type="FLOAT_TYPE" minOccurs="0"/>
+      <!-- Total a pagar = Importe Total - Total Subvenciones - Total Anticipos -->
+      <xsd:element name="total_a_pagar" type="FLOAT_TYPE"/>
+      <xsd:element name="total_suplidos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_gastos_financieros" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_retencion" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_pagos_especie" type="FLOAT_TYPE" minOccurs="0"/>
+      <!-- Total a ejecutar = Total A Pagar - Total Retención - Total Pagos Especie + Total Suplidos + Total Gastos Financieros -->
+      <xsd:element name="total_a_ejecutar" type="FLOAT_TYPE"/>
+      <xsd:element name="literales_legales" type="STRING2500_TYPE" minOccurs="0"/>
+      <xsd:element name="informacion_adicional" type="STRING2500_TYPE" minOccurs="0"/>
+      <xsd:element name="texto_libre" type="STRING500_TYPE" minOccurs="0"/>
+      <xsd:element name="plantilla_facturas_emitidas" type="STRING100_TYPE" minOccurs="0"/>
+      <xsd:element name="plantilla_facturas_proforma" type="STRING100_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <!-- NIVEL 5 -->
+  <xsd:complexType name="FORMA_PAGO_TYPE">
+    <xsd:all>
+      <xsd:element name="metodo" type="METODO_PAGO_TYPE"/>
+      <!-- Si la forma de pago es 'transferencia', todos los campos referidos a esta son obligatorios -->
+      <xsd:element name="transferencia_banco" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="transferencia_beneficiario" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="transferencia_concepto" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="transferencia_iban" type="STRING24_TYPE" minOccurs="0"/>
+      <xsd:element name="transferencia_bic" type="STRING12_TYPE" minOccurs="0"/>
+      <!-- Si la forma de pago es 'domiciliacion', todos los campos referidos a esta son obligatorios -->
+      <xsd:element name="domiciliacion_descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliacion_tipo_pago" type="DOMICILIACION_TIPO_PAGO_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliacion_bic" type="STRING12_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliacion_iban" type="STRING24_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliacion_mandato_fecha" type="FECHA_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliacion_mandato_id" type="STRING35_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliacion_numero_documento" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliacion_tipo_documento" type="TIPO_DOCUMENTO_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliacion_titular" type="STRING50_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CLIENTE_TYPE">
+    <xsd:all>
+      <xsd:element name="tipo_persona" type="TIPO_PERSONA_TYPE"/>
+      <xsd:element name="nombre" type="STRING50_TYPE"/>
+      <xsd:element name="apellidos" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="nombre_comercial" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="tipo_documento" type="TIPO_DOCUMENTO_TYPE"/>
+      <xsd:element name="numero_documento" type="STRING20_TYPE"/>
+      <xsd:element name="cuenta_contable" type="STRING15_TYPE" minOccurs="0"/>
+      <xsd:element name="cuenta_contable_suplidos" type="STRING15_TYPE" minOccurs="0"/>
+      <xsd:element name="observacion" type="STRING200_TYPE" minOccurs="0"/>
+      <xsd:element name="tipo_residencia" type="TIPO_RESIDENCIA_TYPE"/>
+      <xsd:element name="codigo_pais" type="CODIGO_PAIS_TYPE"/>
+      <xsd:element name="domicilio" type="STRING50_TYPE"/>
+      <xsd:element name="domicilio_2" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="poblacion" type="STRING50_TYPE"/>
+      <xsd:element name="provincia" type="STRING20_TYPE"/>
+      <xsd:element name="cp" type="STRING5_TYPE"/>
+      <xsd:element name="cp_2" type="STRING10_TYPE" minOccurs="0"/>
+      <xsd:element name="telefono" type="STRING15_TYPE" minOccurs="0"/>
+      <xsd:element name="email" type="STRING100_TYPE" minOccurs="0"/>
+      <xsd:element name="persona_contacto" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="notas" type="STRING500_TYPE" minOccurs="0"/>
+      <xsd:element name="emails_extra" type="EMAILS_EXTRA_TYPE" minOccurs="0"/>
+      <xsd:element name="domiciliaciones" type="DOMICILIACIONES_TYPE" minOccurs="0"/>
+      <xsd:element name="centros_administrativos_face" type="CENTROS_ADMINISTRATIVOS_FACE_TYPE" minOccurs="0"/>
+      <!-- Los nodos descritos a continuación están obsoletos. Se mantienen por compatibilidad con versiones anteriores. En su lugar, usar el nodo CENTROS_ADMINISTRATIVOS_FACE_TYPE -->
+      <xsd:element name="oficina_contable_descripcion" type="STRING40_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_codigo" type="STRING11_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_domicilio" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_poblacion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_provincia" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_cp" type="STRING5_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_descripcion" type="STRING40_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_codigo" type="STRING11_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_domicilio" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_poblacion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_provincia" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_cp" type="STRING5_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_descripcion" type="STRING40_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_codigo" type="STRING11_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_domicilio" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_poblacion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_provincia" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_cp" type="STRING5_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_descripcion" type="STRING40_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_codigo" type="STRING11_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_domicilio" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_poblacion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_provincia" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_cp" type="STRING5_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CONCEPTOS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="concepto" type="CONCEPTO_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CONCEPTOS_TEXTOS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="concepto_texto" type="CONCEPTO_TEXTO_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DESCUENTOS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="descuento" type="DESCUENTO_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CARGOS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="cargo" type="CARGO_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SUBVENCIONES_TYPE">
+    <xsd:sequence>
+      <xsd:element name="subvencion" type="SUBVENCION_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ANTICIPOS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="anticipo" type="ANTICIPO_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SUPLIDOS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="suplido" type="SUPLIDO_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GASTOS_FINANCIEROS_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE"/>
+      <xsd:element name="importe" type="FLOAT_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="PAGOS_ESPECIE_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE"/>
+      <xsd:element name="importe" type="FLOAT_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="RETENCION_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE"/>
+      <xsd:element name="porcentaje" type="PORCENTAJE_TYPE"/>
+      <!-- Total a Pagar de la factura > Base de la retención -->
+      <xsd:element name="total_a_pagar" type="FLOAT_TYPE"/>
+      <xsd:element name="importe" type="FLOAT_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <!-- NIVEL 6 -->
+  <xsd:complexType name="CONCEPTO_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING500_TYPE"/>
+      <xsd:element name="categoria" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="cuenta_contable" type="STRING15_TYPE" minOccurs="0"/>
+      <xsd:element name="descripcion_larga" type="STRING2500_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_medida" type="UNIDAD_MEDIDA_TYPE"/>
+      <xsd:element name="unidades" type="FLOAT_TYPE"/>
+      <xsd:element name="base_unidad" type="FLOAT_TYPE"/>
+      <!-- Importe Bruto = Unidades * Base Unidad -->
+      <xsd:element name="importe_bruto" type="FLOAT_TYPE"/>
+      <!-- Base Imponible = Importe Bruto - Total descuentos + Total Cargos -->
+      <xsd:element name="base_imponible" type="FLOAT_TYPE"/>
+      <!-- Importe Total = Base Imponible + Total Impuestos Repercutidos - Total Impuestos Retenidos -->
+      <xsd:element name="importe_total" type="FLOAT_TYPE"/>
+      <xsd:element name="informacion_adicional" type="STRING2500_TYPE" minOccurs="0"/>
+      <xsd:element name="descuentos" type="DESCUENTOS_TYPE" minOccurs="0"/>
+      <xsd:element name="cargos" type="CARGOS_TYPE" minOccurs="0"/>
+      <xsd:element name="impuestos_repercutidos" type="IMPUESTOS_REPERCUTIDOS_TYPE" minOccurs="0"/>
+      <xsd:element name="impuestos_retenidos" type="IMPUESTOS_RETENIDOS_TYPE" minOccurs="0"/>
+      <xsd:element name="total_descuentos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_cargos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_impuestos_repercutidos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="total_impuestos_retenidos" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="fiscalidad_especial" type="FISCALIDAD_ESPECIAL_TYPE" minOccurs="0"/>
+      <xsd:element name="literales_legales" type="STRING2500_TYPE" minOccurs="0"/>
+      <xsd:element name="referencias_emisor" type="REFERENCIAS_EMISOR_TYPE" minOccurs="0"/>
+      <xsd:element name="referencias_receptor" type="REFERENCIAS_RECEPTOR_TYPE" minOccurs="0"/>
+      <xsd:element name="referencias_expediente" type="REFERENCIAS_EXPEDIENTE_TYPE" minOccurs="0"/>
+      <xsd:element name="otras_referencias" type="OTRAS_REFERENCIAS_TYPE" minOccurs="0"/>
+      <xsd:element name="referencias_albaranes" type="REFERENCIAS_ALBARANES_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CONCEPTO_TEXTO_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING2500_TYPE" minOccurs="0"/>
+      <!-- Posicion: Posición que ocupa en la tabla de conceptos. Ejemplo: 0 - Concepto; 1 - Texto; 2 - Concepto -->
+      <xsd:element name="posicion" type="STRING2_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="DESCUENTO_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE"/>
+      <xsd:element name="porcentaje" type="PORCENTAJE_TYPE" minOccurs="0"/>
+      <xsd:element name="importe" type="FLOAT_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CARGO_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE"/>
+      <xsd:element name="porcentaje" type="PORCENTAJE_TYPE" minOccurs="0"/>
+      <xsd:element name="importe" type="FLOAT_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="SUBVENCION_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="porcentaje" type="PORCENTAJE_TYPE" minOccurs="0"/>
+      <xsd:element name="importe" type="FLOAT_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="ANTICIPO_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="fecha" type="FECHA_TYPE" minOccurs="0"/>
+      <xsd:element name="importe" type="FLOAT_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="SUPLIDO_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="fecha_emision" type="FECHA_TYPE" minOccurs="0"/>
+      <xsd:element name="numero_factura" type="STRING10_TYPE" minOccurs="0"/>
+      <xsd:element name="serie_factura" type="STRING10_TYPE" minOccurs="0"/>
+      <xsd:element name="importe" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="emisor_tipo_persona" type="TIPO_PERSONA_TYPE" minOccurs="0"/>
+      <xsd:element name="emisor_tipo_residencia" type="TIPO_RESIDENCIA_TYPE" minOccurs="0"/>
+      <xsd:element name="emisor_tipo_documento" type="TIPO_DOCUMENTO_TYPE" minOccurs="0"/>
+      <xsd:element name="emisor_numero_documento" type="STRING9_TYPE" minOccurs="0"/>
+      <xsd:element name="cliente_tipo_persona" type="TIPO_PERSONA_TYPE" minOccurs="0"/>
+      <xsd:element name="cliente_tipo_residencia" type="TIPO_RESIDENCIA_TYPE" minOccurs="0"/>
+      <xsd:element name="cliente_tipo_documento" type="TIPO_DOCUMENTO_TYPE" minOccurs="0"/>
+      <xsd:element name="cliente_numero_documento" type="STRING20_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <!-- NIVEL 7 -->
+  <xsd:complexType name="IMPUESTOS_REPERCUTIDOS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="impuesto_repercutido" type="IMPUESTO_REPERCUTIDO_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="IMPUESTOS_RETENIDOS_TYPE">
+    <xsd:sequence>
+      <xsd:element name="impuesto_retenido" type="IMPUESTO_RETENIDO_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FISCALIDAD_ESPECIAL_TYPE">
+    <xsd:all>
+      <xsd:element name="clave_regimen" type="CLAVE_REGIMEN_TYPE"/>
+      <xsd:element name="tipo" type="TIPO_OPERACION_TYPE"/>
+      <xsd:element name="justificacion" type="STRING2500_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="REFERENCIAS_EMISOR_TYPE">
+    <xsd:all>
+      <xsd:element name="referencia_contrato" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="fecha_contrato" type="STRING10_TYPE" minOccurs="0"/>
+      <xsd:element name="referencia_operacion" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="fecha_operacion" type="STRING10_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="REFERENCIAS_RECEPTOR_TYPE">
+    <xsd:all>
+      <xsd:element name="referencia_contrato" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="fecha_contrato" type="STRING10_TYPE" minOccurs="0"/>
+      <xsd:element name="referencia_operacion" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="fecha_operacion" type="STRING10_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="REFERENCIAS_EXPEDIENTE_TYPE">
+    <xsd:all>
+      <xsd:element name="referencia_expediente" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="fecha_contrato" type="STRING10_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="OTRAS_REFERENCIAS_TYPE">
+    <xsd:all>
+      <xsd:element name="numero_linea_pedido" type="STRING20_TYPE" minOccurs="0"/>
+      <xsd:element name="codigo_articulo" type="STRING20_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="REFERENCIAS_ALBARANES_TYPE">
+    <xsd:sequence>
+      <xsd:element name="referencia_albaran" type="REFERENCIA_ALBARAN_TYPE" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- NIVEL 8 -->
+  <xsd:complexType name="IMPUESTO_REPERCUTIDO_TYPE">
+    <xsd:all>
+      <xsd:element name="impuesto" type="IMPUESTO_TYPE"/>
+      <xsd:element name="porcentaje" type="PORCENTAJE_TYPE"/>
+      <xsd:element name="base_imponible" type="FLOAT_TYPE"/>
+      <xsd:element name="importe" type="FLOAT_TYPE"/>
+      <xsd:element name="base_imponible_especial" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="importe_especial" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="recargo_equivalencia_porcentaje" type="PORCENTAJE_TYPE" minOccurs="0"/>
+      <xsd:element name="recargo_equivalencia_importe" type="FLOAT_TYPE" minOccurs="0"/>
+      <xsd:element name="importe_total" type="FLOAT_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="IMPUESTO_RETENIDO_TYPE">
+    <xsd:all>
+      <xsd:element name="impuesto" type="IMPUESTO_TYPE"/>
+      <xsd:element name="porcentaje" type="PORCENTAJE_TYPE"/>
+      <xsd:element name="base_imponible" type="FLOAT_TYPE"/>
+      <xsd:element name="importe" type="FLOAT_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="REFERENCIA_ALBARAN_TYPE">
+    <xsd:all>
+      <xsd:element name="numero_referencia" type="STRING30_TYPE" minOccurs="0"/>
+      <xsd:element name="fecha" type="STRING10_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="EMAILS_EXTRA_TYPE">
+    <xsd:sequence>
+      <xsd:element name="email" type="STRING100_TYPE" maxOccurs="20" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DOMICILIACIONES_TYPE">
+      <xsd:sequence>
+        <xsd:element name="domiciliacion" type="DOMICILIACION_TYPE" maxOccurs="unbounded" minOccurs="0"/>
+      </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CENTROS_ADMINISTRATIVOS_FACE_TYPE">
+      <xsd:sequence>
+            <xsd:element name="centro_administrativo_face" type="CENTRO_ADMINISTRATIVO_FACE_TYPE" maxOccurs="unbounded" minOccurs="0"/>
+      </xsd:sequence>
+  </xsd:complexType>
+  <!-- NIVEL 9 -->
+  <xsd:complexType name="DOMICILIACION_TYPE">
+    <xsd:all>
+      <xsd:element name="descripcion" type="STRING50_TYPE"/>
+      <xsd:element name="titular" type="STRING50_TYPE"/>
+      <xsd:element name="tipo_documento" type="TIPO_DOCUMENTO_TYPE"/>
+      <xsd:element name="numero_documento" type="STRING20_TYPE"/>
+      <xsd:element name="iban" type="STRING24_TYPE"/>
+      <xsd:element name="bic" type="STRING12_TYPE"/>
+      <xsd:element name="mandato_id" type="STRING35_TYPE"/>
+      <xsd:element name="mandato_fecha" type="FECHA_TYPE"/>
+      <xsd:element name="tipo_pago" type="DOMICILIACION_TIPO_PAGO_TYPE"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:complexType name="CENTRO_ADMINISTRATIVO_FACE_TYPE">
+    <xsd:all>
+      <xsd:element name="centro_face_descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_codigo" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_cp" type="STRING5_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_domicilio" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_poblacion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="oficina_contable_provincia" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_codigo" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_cp" type="STRING5_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_domicilio" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_poblacion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_gestor_provincia" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_codigo" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_cp" type="STRING5_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_domicilio" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_poblacion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="unidad_tramitadora_provincia" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_codigo" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_cp" type="STRING5_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_descripcion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_domicilio" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_poblacion" type="STRING50_TYPE" minOccurs="0"/>
+      <xsd:element name="organo_proponente_provincia" type="STRING50_TYPE" minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>  
+  <!-- TIPOS SIMPLES -->
+  <xsd:simpleType name="STRING2500_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="2500"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING500_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="500"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING300_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="300"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING200_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="200"/>
+    </xsd:restriction>
+  </xsd:simpleType> 
+  <xsd:simpleType name="STRING100_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="100"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING60_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="60"/>
+    </xsd:restriction>
+  </xsd:simpleType> 
+  <xsd:simpleType name="STRING50_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="50"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING40_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="40"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING35_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="35"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING30_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="30"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING24_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="24"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING20_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="20"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING11_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="11"/>
+    </xsd:restriction>
+  </xsd:simpleType>  
+  <xsd:simpleType name="STRING15_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="15"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING12_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING10_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="10"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING9_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="9"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING5_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="5"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING4_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="4"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING3_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="3"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING2_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="2"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="STRING1_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="BOOL_TYPE">
+    <xsd:restriction base="xsd:string">
+
+      <xsd:enumeration value="1">
+      </xsd:enumeration>
+
+      <xsd:enumeration value="0">
+      </xsd:enumeration>
+
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FLOAT_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="15"/>
+      <xsd:pattern value="[+-]?([0-9]*[.])?[0-9]+"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PORCENTAJE_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="5"/>
+      <xsd:pattern value="[+-]?([0-9]*[.])?[0-9]+"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FECHA_TYPE">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="es">Tipo creado para elementos que contienen fechas v�lidas (de 19000101 a 20991231) Formato: AAAAMMDD - A�o(4) Mes(2) D�a(2).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <!-- <xsd:pattern value="(19|20)\d\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])"/> -->
+      <xsd:minLength value="0"/>
+      <xsd:maxLength value="10"/>
+      <xsd:pattern value="((\d{4})-(\d{2})-(\d{2}))?"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TIPO_FACTURA_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="F1">
+        <xsd:annotation>
+          <xsd:documentation>Tipo Factura F1 - Factura (art. 6, 7.2 y 7.3 del RD 1619/2012)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="F2">
+        <xsd:annotation>
+          <xsd:documentation>Tipo Factura F2 - Factura Simplificada y Facturas sin identificación del destinatario art. 6.1.d) RD 1619/2012</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="F3">
+        <xsd:annotation>
+          <xsd:documentation>Tipo Factura F3 - Factura emitida en sustitución de facturas simplificadas facturadas y declaradas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="R1">
+        <xsd:annotation>
+          <xsd:documentation>Tipo Factura R1 - Factura Rectificativa (Error fundado en derecho y Art. 80 Uno Dos y Seis LIVA)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="R2">
+        <xsd:annotation>
+          <xsd:documentation>Tipo Factura R2 - Factura Rectificativa (Art. 80.3)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="R3">
+        <xsd:annotation>
+          <xsd:documentation>Tipo Factura R3 - Factura Rectificativa (Art. 80.4)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="R4">
+        <xsd:annotation>
+          <xsd:documentation>Tipo Factura R4 - Factura Rectificativa (Resto)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="R5">
+        <xsd:annotation>
+          <xsd:documentation>Tipo Factura R5 - Factura Rectificativa en facturas simplificadas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TIPO_RECTIFICATIVA_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="I">
+        <xsd:annotation>
+          <xsd:documentation>Rectificativa por diferencias</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="S">
+        <xsd:annotation>
+          <xsd:documentation>Rectificativa por sustitución</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TIPO_DOCUMENTO_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="nif">
+        <xsd:annotation>
+          <xsd:documentation>NIF:</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="nie">
+        <xsd:annotation>
+          <xsd:documentation>NIE:</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="02">
+        <xsd:annotation>
+          <xsd:documentation>NIF-IVA:</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="03">
+        <xsd:annotation>
+          <xsd:documentation>Pasaporte:</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="04">
+        <xsd:annotation>
+          <xsd:documentation>Documento oficial de identificación expedido por el país o territorio de residencia:</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="05">
+        <xsd:annotation>
+          <xsd:documentation>Certificado de residencia:</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="06">
+        <xsd:annotation>
+          <xsd:documentation>Otro documento probatorio:</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="07">
+        <xsd:annotation>
+          <xsd:documentation>No censado:</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="otro_id"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="DOMICILIACION_TIPO_PAGO_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="FNAL">
+        <xsd:annotation>
+          <xsd:documentation>Último pago recurrente</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="FRST">
+        <xsd:annotation>
+          <xsd:documentation>Primer pago recurrente</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="OOFF">
+        <xsd:annotation>
+          <xsd:documentation>Pago único</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="RCUR">
+        <xsd:annotation>
+          <xsd:documentation>Pago recurrente</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="RECTIFICATIVA_MOTIVO_CODIGO_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="01">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Número de la factura</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="02">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Serie de la factura</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="03">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Fecha expedición</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="04">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Nombre y apellidos/Razón social - Emisor</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="05">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Nombre y apellidos/Razón social - Receptor</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="06">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Identificación fiscal Emisor/Obligado</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="07">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Identificación fiscal Receptor</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="08">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Domicilio Emisor/Obligado</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="09">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Domicilio Receptor</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Detalle Operación</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="11">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Porcentaje impositivo a aplicar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="12">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Cuota tributaria a aplicar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="13">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Fecha/Periodo a aplicar</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="14">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Clase de factura</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="15">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Literales legales</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="16">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Base imponible</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="80">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Cálculo de cuotas repercutidas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="81">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Cálculo de cuotas retenidas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="82">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Base imponible modificada por devolución de envases/embalajes</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="83">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Base imponible modificada por descuentos y bonificaciones</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="84">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Base imponible modificada por resolución firme, judicial o administrativa</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="85">
+        <xsd:annotation>
+          <xsd:documentation>Rectificar: Base imponible modificada cuotas repercutidas no satisfechas. Auto de declaración de concurso</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TIPO_RESIDENCIA_TYPE">
+    <xsd:restriction base="xsd:string">
+
+      <xsd:enumeration value="R">
+        <xsd:annotation>
+          <xsd:documentation>Residente en España</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="U">
+        <xsd:annotation>
+          <xsd:documentation>Residente en la Unión Europea</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="E">
+        <xsd:annotation>
+          <xsd:documentation>Residente en el extranjero</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TIPO_PERSONA_TYPE">
+    <xsd:restriction base="xsd:string">
+
+      <xsd:enumeration value="J">
+        <xsd:annotation>
+          <xsd:documentation>Persona Jurídica</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="F">
+        <xsd:annotation>
+          <xsd:documentation>Persona Física</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="METODO_PAGO_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="efectivo"/>
+      <xsd:enumeration value="transferencia"/>
+      <xsd:enumeration value="domiciliacion"/>
+      <xsd:enumeration value="tarjeta"/>
+      <xsd:enumeration value="recibo"/>
+      <xsd:enumeration value="letra_aceptada"/>
+      <xsd:enumeration value="credito_documentario"/>
+      <xsd:enumeration value="contrato_adjudicacion"/>
+      <xsd:enumeration value="letra_de_cambio"/>
+      <xsd:enumeration value="pagare_a_la_orden"/>
+      <xsd:enumeration value="pagare_no_a_la_orden"/>
+      <xsd:enumeration value="cheque"/>
+      <xsd:enumeration value="reposicion"/>
+      <xsd:enumeration value="especiales"/>
+      <xsd:enumeration value="compensacion"/>
+      <xsd:enumeration value="giro_postal"/>
+      <xsd:enumeration value="cheque_conformado"/>
+      <xsd:enumeration value="cheque_bancario"/>
+      <xsd:enumeration value="pago_contra_reembolso"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CODIGO_PAIS_TYPE">
+    <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="ESP">
+            <xsd:annotation>
+                <xsd:documentation>País: España</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ABW">
+            <xsd:annotation>
+                <xsd:documentation>País: Aruba</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="AFG">
+            <xsd:annotation>
+                <xsd:documentation>País: Afganistán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="AGO">
+            <xsd:annotation>
+                <xsd:documentation>País: Angola</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="AIA">
+            <xsd:annotation>
+                <xsd:documentation>País: Anguila</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ALA">
+            <xsd:annotation>
+                <xsd:documentation>País: Åland, Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ALB">
+            <xsd:annotation>
+                <xsd:documentation>País: Albania</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="AND">
+            <xsd:annotation>
+                <xsd:documentation>País: Andorra</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ARE">
+            <xsd:annotation>
+                <xsd:documentation>País: Emiratos Árabes Unidos (los)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ARG">
+            <xsd:annotation>
+                <xsd:documentation>País: Argentina</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ARM">
+            <xsd:annotation>
+                <xsd:documentation>País: Armenia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ASM">
+            <xsd:annotation>
+                <xsd:documentation>País: Samoa Americana</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ATA">
+            <xsd:annotation>
+                <xsd:documentation>País: Antártida</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ATF">
+            <xsd:annotation>
+                <xsd:documentation>País: Tierras Australes Francesas (las)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ATG">
+            <xsd:annotation>
+                <xsd:documentation>País: Antigua y Barbuda</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="AUS">
+            <xsd:annotation>
+                <xsd:documentation>País: Australia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="AUT">
+            <xsd:annotation>
+                <xsd:documentation>País: Austria</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="AZE">
+            <xsd:annotation>
+                <xsd:documentation>País: Azerbaiyán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BDI">
+            <xsd:annotation>
+                <xsd:documentation>País: Burundi</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BEL">
+            <xsd:annotation>
+                <xsd:documentation>País: Bélgica</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BEN">
+            <xsd:annotation>
+                <xsd:documentation>País: Benín</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BES">
+            <xsd:annotation>
+                <xsd:documentation>País: Bonaire, San Eusatquio y Saba</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BFA">
+            <xsd:annotation>
+                <xsd:documentation>País: Burkina Faso</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BGD">
+            <xsd:annotation>
+                <xsd:documentation>País: Bangladés</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BGR">
+            <xsd:annotation>
+                <xsd:documentation>País: Bulgaria</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BHR">
+            <xsd:annotation>
+                <xsd:documentation>País: Baréin</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BHS">
+            <xsd:annotation>
+                <xsd:documentation>País: Bahamas (las)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BIH">
+            <xsd:annotation>
+                <xsd:documentation>País: Bosnia y Herzegovina</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BLM">
+            <xsd:annotation>
+                <xsd:documentation>País: San Barthélemy</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BLR">
+            <xsd:annotation>
+                <xsd:documentation>País: Belarús</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BLZ">
+            <xsd:annotation>
+                <xsd:documentation>País: Belice</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BMU">
+            <xsd:annotation>
+                <xsd:documentation>País: Bermuda</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BOL">
+            <xsd:annotation>
+                <xsd:documentation>País: Bolivia (Estado Plurinacional de)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BRA">
+            <xsd:annotation>
+                <xsd:documentation>País: Brasil</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BRB">
+            <xsd:annotation>
+                <xsd:documentation>País: Barbados</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BRN">
+            <xsd:annotation>
+                <xsd:documentation>País: Brunei Darussalam</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BTN">
+            <xsd:annotation>
+                <xsd:documentation>País: Bhután</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BVT">
+            <xsd:annotation>
+                <xsd:documentation>País: Bouvet, Isla</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="BWA">
+            <xsd:annotation>
+                <xsd:documentation>País: Botsuana</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CAF">
+            <xsd:annotation>
+                <xsd:documentation>País: República Centroafricana (la)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CAN">
+            <xsd:annotation>
+                <xsd:documentation>País: Canadá</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CCK">
+            <xsd:annotation>
+                <xsd:documentation>País: Cocos / Keeling, (las) Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CHE">
+            <xsd:annotation>
+                <xsd:documentation>País: Suiza</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CHL">
+            <xsd:annotation>
+                <xsd:documentation>País: Chile</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CHN">
+            <xsd:annotation>
+                <xsd:documentation>País: China</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CIV">
+            <xsd:annotation>
+                <xsd:documentation>País: Côte d'Ivoire</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CMR">
+            <xsd:annotation>
+                <xsd:documentation>País: Camerún</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="COD">
+            <xsd:annotation>
+                <xsd:documentation>País: Congo (la República Democrática del)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="COG">
+            <xsd:annotation>
+                <xsd:documentation>País: Congo (el)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="COK">
+            <xsd:annotation>
+                <xsd:documentation>País: Cook, (las) Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="COL">
+            <xsd:annotation>
+                <xsd:documentation>País: Colombia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="COM">
+            <xsd:annotation>
+                <xsd:documentation>País: Comoras (las)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CPV">
+            <xsd:annotation>
+                <xsd:documentation>País: Cabo Verde</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CRI">
+            <xsd:annotation>
+                <xsd:documentation>País: Costa Rica</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CUB">
+            <xsd:annotation>
+                <xsd:documentation>País: Cuba</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CUW">
+            <xsd:annotation>
+                <xsd:documentation>País: Curazao</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CXR">
+            <xsd:annotation>
+                <xsd:documentation>País: Christmas, Isla</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CYM">
+            <xsd:annotation>
+                <xsd:documentation>País: Caimán, (las) Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CYP">
+            <xsd:annotation>
+                <xsd:documentation>País: Chipre</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="CZE">
+            <xsd:annotation>
+                <xsd:documentation>País: Chequia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="DEU">
+            <xsd:annotation>
+                <xsd:documentation>País: Alemania</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="DJI">
+            <xsd:annotation>
+                <xsd:documentation>País: Djibouti</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="DMA">
+            <xsd:annotation>
+                <xsd:documentation>País: Dominica</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="DNK">
+            <xsd:annotation>
+                <xsd:documentation>País: Dinamarca</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="DOM">
+            <xsd:annotation>
+                <xsd:documentation>País: Dominicana, (la) República</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="DZA">
+            <xsd:annotation>
+                <xsd:documentation>País: Argelia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ECU">
+            <xsd:annotation>
+                <xsd:documentation>País: Ecuador</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="EGY">
+            <xsd:annotation>
+                <xsd:documentation>País: Egipto</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ERI">
+            <xsd:annotation>
+                <xsd:documentation>País: Eritrea</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ESH">
+            <xsd:annotation>
+                <xsd:documentation>País: Sáhara Occidental</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ESP">
+            <xsd:annotation>
+                <xsd:documentation>País: España</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="EST">
+            <xsd:annotation>
+                <xsd:documentation>País: Estonia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ETH">
+            <xsd:annotation>
+                <xsd:documentation>País: Etiopía</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="FIN">
+            <xsd:annotation>
+                <xsd:documentation>País: Finlandia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="FJI">
+            <xsd:annotation>
+                <xsd:documentation>País: Fiyi</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="FLK">
+            <xsd:annotation>
+                <xsd:documentation>País: Malvinas [Falkland], (las) Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="FRA">
+            <xsd:annotation>
+                <xsd:documentation>País: Francia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="FRO">
+            <xsd:annotation>
+                <xsd:documentation>País: Feroe, (las) Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="FSM">
+            <xsd:annotation>
+                <xsd:documentation>País: Micronesia (Estados Federados de)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GAB">
+            <xsd:annotation>
+                <xsd:documentation>País: Gabón</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GBR">
+            <xsd:annotation>
+                <xsd:documentation>País: Reino Unido de Gran Bretaña e Irlanda del Norte</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GEO">
+            <xsd:annotation>
+                <xsd:documentation>País: Georgia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GGY">
+            <xsd:annotation>
+                <xsd:documentation>País: Guernsey</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GHA">
+            <xsd:annotation>
+                <xsd:documentation>País: Ghana</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GIB">
+            <xsd:annotation>
+                <xsd:documentation>País: Gibraltar</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GIN">
+            <xsd:annotation>
+                <xsd:documentation>País: Guinea</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GLP">
+            <xsd:annotation>
+                <xsd:documentation>País: Guadalupe</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GMB">
+            <xsd:annotation>
+                <xsd:documentation>País: Gambia (la)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GNB">
+            <xsd:annotation>
+                <xsd:documentation>País: Guinea-Bissau</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GNQ">
+            <xsd:annotation>
+                <xsd:documentation>País: Guinea Ecuatorial</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GRC">
+            <xsd:annotation>
+                <xsd:documentation>País: Grecia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GRD">
+            <xsd:annotation>
+                <xsd:documentation>País: Granada</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GRL">
+            <xsd:annotation>
+                <xsd:documentation>País: Groenlandia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GTM">
+            <xsd:annotation>
+                <xsd:documentation>País: Guatemala</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GUF">
+            <xsd:annotation>
+                <xsd:documentation>País: Guayana Francesa</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GUM">
+            <xsd:annotation>
+                <xsd:documentation>País: Guam</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="GUY">
+            <xsd:annotation>
+                <xsd:documentation>País: Guyana</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="HKG">
+            <xsd:annotation>
+                <xsd:documentation>País: Hong Kong</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="HMD">
+            <xsd:annotation>
+                <xsd:documentation>País: Heard (Isla) e Islas McDonald</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="HND">
+            <xsd:annotation>
+                <xsd:documentation>País: Honduras</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="HRV">
+            <xsd:annotation>
+                <xsd:documentation>País: Croacia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="HTI">
+            <xsd:annotation>
+                <xsd:documentation>País: Haití</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="HUN">
+            <xsd:annotation>
+                <xsd:documentation>País: Hungría</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="IDN">
+            <xsd:annotation>
+                <xsd:documentation>País: Indonesia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="IMN">
+            <xsd:annotation>
+                <xsd:documentation>País: Isla de Man</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="IND">
+            <xsd:annotation>
+                <xsd:documentation>País: India</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="IOT">
+            <xsd:annotation>
+                <xsd:documentation>País: Territorio Británico del Océano Índico (el)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="IRL">
+            <xsd:annotation>
+                <xsd:documentation>País: Irlanda</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="IRN">
+            <xsd:annotation>
+                <xsd:documentation>País: Irán (República Islámica de)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="IRQ">
+            <xsd:annotation>
+                <xsd:documentation>País: Irak</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ISL">
+            <xsd:annotation>
+                <xsd:documentation>País: Islandia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ISR">
+            <xsd:annotation>
+                <xsd:documentation>País: Israel</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ITA">
+            <xsd:annotation>
+                <xsd:documentation>País: Italia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="JAM">
+            <xsd:annotation>
+                <xsd:documentation>País: Jamaica</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="JEY">
+            <xsd:annotation>
+                <xsd:documentation>País: Jersey</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="JOR">
+            <xsd:annotation>
+                <xsd:documentation>País: Jordania</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="JPN">
+            <xsd:annotation>
+                <xsd:documentation>País: Japón</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KAZ">
+            <xsd:annotation>
+                <xsd:documentation>País: Kazajistán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KEN">
+            <xsd:annotation>
+                <xsd:documentation>País: Kenia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KGZ">
+            <xsd:annotation>
+                <xsd:documentation>País: Kirguistán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KHM">
+            <xsd:annotation>
+                <xsd:documentation>País: Camboya</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KIR">
+            <xsd:annotation>
+                <xsd:documentation>País: Kiribati</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KNA">
+            <xsd:annotation>
+                <xsd:documentation>País: Saint Kitts y Nevis</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KOR">
+            <xsd:annotation>
+                <xsd:documentation>País: Corea (la República de)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="KWT">
+            <xsd:annotation>
+                <xsd:documentation>País: Kuwait</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LAO">
+            <xsd:annotation>
+                <xsd:documentation>País: Lao, (la) República Democrática Popular</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LBN">
+            <xsd:annotation>
+                <xsd:documentation>País: Líbano</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LBR">
+            <xsd:annotation>
+                <xsd:documentation>País: Liberia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LBY">
+            <xsd:annotation>
+                <xsd:documentation>País: Libia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LCA">
+            <xsd:annotation>
+                <xsd:documentation>País: Santa Lucía</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LIE">
+            <xsd:annotation>
+                <xsd:documentation>País: Liechtenstein</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LKA">
+            <xsd:annotation>
+                <xsd:documentation>País: Sri Lanka</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LSO">
+            <xsd:annotation>
+                <xsd:documentation>País: Lesoto</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LTU">
+            <xsd:annotation>
+                <xsd:documentation>País: Lituania</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LUX">
+            <xsd:annotation>
+                <xsd:documentation>País: Luxemburgo</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="LVA">
+            <xsd:annotation>
+                <xsd:documentation>País: Letonia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MAC">
+            <xsd:annotation>
+                <xsd:documentation>País: Macao</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MAF">
+            <xsd:annotation>
+                <xsd:documentation>País: San Martín (parte francesa)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MAR">
+            <xsd:annotation>
+                <xsd:documentation>País: Marruecos</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MCO">
+            <xsd:annotation>
+                <xsd:documentation>País: Mónaco</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MDA">
+            <xsd:annotation>
+                <xsd:documentation>País: Moldova (la República de)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MDG">
+            <xsd:annotation>
+                <xsd:documentation>País: Madagascar</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MDV">
+            <xsd:annotation>
+                <xsd:documentation>País: Maldivas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MEX">
+            <xsd:annotation>
+                <xsd:documentation>País: México</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MHL">
+            <xsd:annotation>
+                <xsd:documentation>País: Marshall, (las) Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MKD">
+            <xsd:annotation>
+                <xsd:documentation>País: Macedonia del Norte</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MLI">
+            <xsd:annotation>
+                <xsd:documentation>País: Malí</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MLT">
+            <xsd:annotation>
+                <xsd:documentation>País: Malta</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MMR">
+            <xsd:annotation>
+                <xsd:documentation>País: Myanmar</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MNE">
+            <xsd:annotation>
+                <xsd:documentation>País: Montenegro</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MNG">
+            <xsd:annotation>
+                <xsd:documentation>País: Mongolia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MNP">
+            <xsd:annotation>
+                <xsd:documentation>País: Marianas Septentrionales, (las) Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MOZ">
+            <xsd:annotation>
+                <xsd:documentation>País: Mozambique</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MRT">
+            <xsd:annotation>
+                <xsd:documentation>País: Mauritania</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MSR">
+            <xsd:annotation>
+                <xsd:documentation>País: Montserrat</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MTQ">
+            <xsd:annotation>
+                <xsd:documentation>País: Martinica</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MUS">
+            <xsd:annotation>
+                <xsd:documentation>País: Mauricio</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MWI">
+            <xsd:annotation>
+                <xsd:documentation>País: Malaui</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MYS">
+            <xsd:annotation>
+                <xsd:documentation>País: Malasia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="MYT">
+            <xsd:annotation>
+                <xsd:documentation>País: Mayotte</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NAM">
+            <xsd:annotation>
+                <xsd:documentation>País: Namibia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NCL">
+            <xsd:annotation>
+                <xsd:documentation>País: Nueva Caledonia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NER">
+            <xsd:annotation>
+                <xsd:documentation>País: Níger (el)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NFK">
+            <xsd:annotation>
+                <xsd:documentation>País: Norfolk, Isla</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NGA">
+            <xsd:annotation>
+                <xsd:documentation>País: Nigeria</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NIC">
+            <xsd:annotation>
+                <xsd:documentation>País: Nicaragua</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NIU">
+            <xsd:annotation>
+                <xsd:documentation>País: Niue</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NLD">
+            <xsd:annotation>
+                <xsd:documentation>País: Países Bajos (los)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NOR">
+            <xsd:annotation>
+                <xsd:documentation>País: Noruega</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NPL">
+            <xsd:annotation>
+                <xsd:documentation>País: Nepal</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NRU">
+            <xsd:annotation>
+                <xsd:documentation>País: Nauru</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="NZL">
+            <xsd:annotation>
+                <xsd:documentation>País: Nueva Zelandia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="OMN">
+            <xsd:annotation>
+                <xsd:documentation>País: Omán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PAK">
+            <xsd:annotation>
+                <xsd:documentation>País: Pakistán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PAN">
+            <xsd:annotation>
+                <xsd:documentation>País: Panamá</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PCN">
+            <xsd:annotation>
+                <xsd:documentation>País: Pitcairn</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PER">
+            <xsd:annotation>
+                <xsd:documentation>País: Perú</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PHL">
+            <xsd:annotation>
+                <xsd:documentation>País: Filipinas (las)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PLW">
+            <xsd:annotation>
+                <xsd:documentation>País: Palau</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PNG">
+            <xsd:annotation>
+                <xsd:documentation>País: Papúa Nueva Guinea</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="POL">
+            <xsd:annotation>
+                <xsd:documentation>País: Polonia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PRI">
+            <xsd:annotation>
+                <xsd:documentation>País: Puerto Rico</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PRK">
+            <xsd:annotation>
+                <xsd:documentation>País: Corea (la República Popular Democrática de)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PRT">
+            <xsd:annotation>
+                <xsd:documentation>País: Portugal</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PRY">
+            <xsd:annotation>
+                <xsd:documentation>País: Paraguay</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PSE">
+            <xsd:annotation>
+                <xsd:documentation>País: Palestina, Estado de</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="PYF">
+            <xsd:annotation>
+                <xsd:documentation>País: Polinesia Francesa</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="QAT">
+            <xsd:annotation>
+                <xsd:documentation>País: Catar</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="REU">
+            <xsd:annotation>
+                <xsd:documentation>País: Reunión</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ROU">
+            <xsd:annotation>
+                <xsd:documentation>País: Rumania</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="RUS">
+            <xsd:annotation>
+                <xsd:documentation>País: Rusia, (la) Federación de</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="RWA">
+            <xsd:annotation>
+                <xsd:documentation>País: Ruanda</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SAU">
+            <xsd:annotation>
+                <xsd:documentation>País: Arabia Saudita</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SDN">
+            <xsd:annotation>
+                <xsd:documentation>País: Sudán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SEN">
+            <xsd:annotation>
+                <xsd:documentation>País: Senegal</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SGP">
+            <xsd:annotation>
+                <xsd:documentation>País: Singapur</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SGS">
+            <xsd:annotation>
+                <xsd:documentation>País: Georgia del Sur (la) y las Islas Sandwich del Sur</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SHN">
+            <xsd:annotation>
+                <xsd:documentation>País: Santa Elena, Ascensión y Tristán de Acuña</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SJM">
+            <xsd:annotation>
+                <xsd:documentation>País: Svalbard y Jan Mayen</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SLB">
+            <xsd:annotation>
+                <xsd:documentation>País: Salomón, Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SLE">
+            <xsd:annotation>
+                <xsd:documentation>País: Sierra Leona</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SLV">
+            <xsd:annotation>
+                <xsd:documentation>País: El Salvador</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SMR">
+            <xsd:annotation>
+                <xsd:documentation>País: San Marino</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SOM">
+            <xsd:annotation>
+                <xsd:documentation>País: Somalia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SPM">
+            <xsd:annotation>
+                <xsd:documentation>País: San Pedro y Miquelón</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SRB">
+            <xsd:annotation>
+                <xsd:documentation>País: Serbia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SSD">
+            <xsd:annotation>
+                <xsd:documentation>País: Sudán del Sur</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="STP">
+            <xsd:annotation>
+                <xsd:documentation>País: Santo Tomé y Príncipe</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SUR">
+            <xsd:annotation>
+                <xsd:documentation>País: Suriname</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SVK">
+            <xsd:annotation>
+                <xsd:documentation>País: Eslovaquia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SVN">
+            <xsd:annotation>
+                <xsd:documentation>País: Eslovenia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SWE">
+            <xsd:annotation>
+                <xsd:documentation>País: Suecia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SWZ">
+            <xsd:annotation>
+                <xsd:documentation>País: Eswatini</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SXM">
+            <xsd:annotation>
+                <xsd:documentation>País: San Martín (parte neerlandesa)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SYC">
+            <xsd:annotation>
+                <xsd:documentation>País: Seychelles</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="SYR">
+            <xsd:annotation>
+                <xsd:documentation>País: República Árabe Siria</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TCA">
+            <xsd:annotation>
+                <xsd:documentation>País: Turcas y Caicos, (las) Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TCD">
+            <xsd:annotation>
+                <xsd:documentation>País: Chad</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TGO">
+            <xsd:annotation>
+                <xsd:documentation>País: Togo</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="THA">
+            <xsd:annotation>
+                <xsd:documentation>País: Tailandia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TJK">
+            <xsd:annotation>
+                <xsd:documentation>País: Tayikistán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TKL">
+            <xsd:annotation>
+                <xsd:documentation>País: Tokelau</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TKM">
+            <xsd:annotation>
+                <xsd:documentation>País: Turkmenistán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TLS">
+            <xsd:annotation>
+                <xsd:documentation>País: Timor-Leste</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TON">
+            <xsd:annotation>
+                <xsd:documentation>País: Tonga</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TTO">
+            <xsd:annotation>
+                <xsd:documentation>País: Trinidad y Tabago</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TUN">
+            <xsd:annotation>
+                <xsd:documentation>País: Túnez</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TUR">
+            <xsd:annotation>
+                <xsd:documentation>País: Turquía</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TUV">
+            <xsd:annotation>
+                <xsd:documentation>País: Tuvalu</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TWN">
+            <xsd:annotation>
+                <xsd:documentation>País: Taiwán (ProvincIa de China)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="TZA">
+            <xsd:annotation>
+                <xsd:documentation>País: Tanzania, República Unida de</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="UGA">
+            <xsd:annotation>
+                <xsd:documentation>País: Uganda</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="UKR">
+            <xsd:annotation>
+                <xsd:documentation>País: Ucrania</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="UMI">
+            <xsd:annotation>
+                <xsd:documentation>País: Islas menores alejadas de Estados Unidos (las)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="URY">
+            <xsd:annotation>
+                <xsd:documentation>País: Uruguay</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="USA">
+            <xsd:annotation>
+                <xsd:documentation>País: Estados Unidos de América (los)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="UZB">
+            <xsd:annotation>
+                <xsd:documentation>País: Uzbekistán</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="VAT">
+            <xsd:annotation>
+                <xsd:documentation>País: Santa Sede (la)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="VCT">
+            <xsd:annotation>
+                <xsd:documentation>País: San Vincente y las Granadinas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="VEN">
+            <xsd:annotation>
+                <xsd:documentation>País: Venezuela (República Bolivariana de)</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="VGB">
+            <xsd:annotation>
+                <xsd:documentation>País: Vírgenes Británicas, Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="VIR">
+            <xsd:annotation>
+                <xsd:documentation>País: Vírgenes de los Estados Unidos, Islas</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="VNM">
+            <xsd:annotation>
+                <xsd:documentation>País: Viet Nam</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="VUT">
+            <xsd:annotation>
+                <xsd:documentation>País: Vanuatu</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="WLF">
+            <xsd:annotation>
+                <xsd:documentation>País: Wallis y Futuna</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="WSM">
+            <xsd:annotation>
+                <xsd:documentation>País: Samoa</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="YEM">
+            <xsd:annotation>
+                <xsd:documentation>País: Yemen</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ZAF">
+            <xsd:annotation>
+                <xsd:documentation>País: Sudáfrica</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ZMB">
+            <xsd:annotation>
+                <xsd:documentation>País: Zambia</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ZWE">
+            <xsd:annotation>
+                <xsd:documentation>País: Zimbabue</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>    
+  <xsd:simpleType name="CLAVE_REGIMEN_TYPE">
+    <xsd:restriction base="xsd:string">
+  
+      <xsd:enumeration value="01">
+        <xsd:annotation>
+          <xsd:documentation>Operación de régimen general.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="02">
+        <xsd:annotation>
+          <xsd:documentation>Exportación.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="03">
+        <xsd:annotation>
+          <xsd:documentation>Régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="04">
+        <xsd:annotation>
+          <xsd:documentation>Régimen especial del oro de inversión.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="05">
+        <xsd:annotation>
+          <xsd:documentation>Régimen especial de las agencias de viajes.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="06">
+        <xsd:annotation>
+          <xsd:documentation>Régimen especial grupo de entidades en IVA (Nivel Avanzado).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="07">
+        <xsd:annotation>
+          <xsd:documentation>Régimen especial del criterio de caja.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="08">
+        <xsd:annotation>
+          <xsd:documentation>Operaciones sujetas al IPSI / IGIC.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="09">
+        <xsd:annotation>
+          <xsd:documentation>Facturación de prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="10">
+        <xsd:annotation>
+          <xsd:documentation>Cobros por cuenta de terceros de honorarios profesionales o derechos de propiedad industrial o intelectual.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="11">
+        <xsd:annotation>
+          <xsd:documentation>Operaciones de arrendamiento de local de negocio.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="14">
+        <xsd:annotation>
+          <xsd:documentation>Factura con IVA pendiente de devengo en certificaciones de obra cuyo destinatario sea una Administración Pública.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="15">
+        <xsd:annotation>
+          <xsd:documentation>Factura con IVA pendiente de devengo en operaciones de tracto sucesivo.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="17">
+        <xsd:annotation>
+          <xsd:documentation>Operación acogida a alguno de los regímenes previstos en el Capítulo XI del Título IX (OSS e IOSS).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="18">
+        <xsd:annotation>
+          <xsd:documentation>Recargo de equivalencia.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="19">
+        <xsd:annotation>
+          <xsd:documentation>Operaciones incluidas en el Régimen Especial de Agricultura, Ganadería y Pesca (REAGYP).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+      <xsd:enumeration value="20">
+        <xsd:annotation>
+          <xsd:documentation>Régimen simplificado.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TIPO_OPERACION_TYPE">
+  <xsd:restriction base="xsd:string">
+
+    <xsd:enumeration value="S1">
+      <xsd:annotation>
+        <xsd:documentation>Sujeta y No exenta - Sin inversión del sujeto pasivo</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="S2">
+      <xsd:annotation>
+        <xsd:documentation>Sujeta y No exenta - Con inversión del sujeto pasivo</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="E1">
+      <xsd:annotation>
+        <xsd:documentation>Sujeta y Exenta por el artículo 20</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="E2">
+      <xsd:annotation>
+        <xsd:documentation>Sujeta y Exenta por el artículo 21</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="E3">
+      <xsd:annotation>
+        <xsd:documentation>Sujeta y Exenta por el artículo 22</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="E4">
+      <xsd:annotation>
+        <xsd:documentation>Sujeta y Exenta por los artículos 23 y 24</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="E5">
+      <xsd:annotation>
+        <xsd:documentation>Sujeta y Exenta por el artículo 25</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="E6">
+      <xsd:annotation>
+        <xsd:documentation>Sujeta y Exenta por otros</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="N1">
+      <xsd:annotation>
+        <xsd:documentation>No Sujeta artículo 7, 14, otros</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="N2">
+      <xsd:annotation>
+        <xsd:documentation>No Sujeta por Reglas de localización</xsd:documentation>
+      </xsd:annotation>
+    </xsd:enumeration>
+
+  </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="IMPUESTO_TYPE">
+  <xsd:restriction base="xsd:string">
+
+    <xsd:enumeration value="IVA">
+      <xsd:annotation><xsd:documentation>IVA - Impuesto sobre el valor añadido</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IPSI">
+      <xsd:annotation><xsd:documentation>IPSI - Impuesto sobre la producción, los servicios y la importación</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IGIC">
+      <xsd:annotation><xsd:documentation>IGIC - Impuesto general indirecto de Canarias</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IRPF">
+      <xsd:annotation><xsd:documentation>IRPF - Impuesto sobre la Renta de las personas físicas</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="OTRO">
+      <xsd:annotation><xsd:documentation>Otro</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="ITPAJD">
+      <xsd:annotation><xsd:documentation>ITPAJD - Impuesto sobre transmisiones patrimoniales y actos jurídicos documentados</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IE">
+      <xsd:annotation><xsd:documentation>IE - Impuestos especiales</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="Ra">
+      <xsd:annotation><xsd:documentation>Ra - Renta aduanas</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IGTECM">
+      <xsd:annotation><xsd:documentation>IGTECM - Impuesto general sobre el tráfico de empresas que se aplica en Ceuta y Melilla</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IECDPCAC">
+      <xsd:annotation><xsd:documentation>IECDPCAC - Impuesto especial sobre los combustibles derivados del petróleo en la Comunidad Autónoma Canaria</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IIIMAB">
+      <xsd:annotation><xsd:documentation>IIIMAB - Impuesto sobre las instalaciones que inciden sobre el medio ambiente en las Baleares</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="ICIO">
+      <xsd:annotation><xsd:documentation>ICIO - Impuesto sobre las construcciones, instalaciones y obras</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IMVDN">
+      <xsd:annotation><xsd:documentation>IMVDN - Impuesto municipal sobre las viviendas desocupadas en Navarra</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IMSN">
+      <xsd:annotation><xsd:documentation>IMSN - Impuesto municipal sobre solares en Navarra</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IMGSN">
+      <xsd:annotation><xsd:documentation>IMGSN - Impuesto municipal sobre gastos suntuarios en Navarra</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IMPN">
+      <xsd:annotation><xsd:documentation>IMPN - Impuesto municipal sobre publicidad en Navarra</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="REIVA">
+      <xsd:annotation><xsd:documentation>REIVA - Régimen especial de IVA para agencias de viajes</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="REIGIC">
+      <xsd:annotation><xsd:documentation>REIGIC - Régimen especial de IGIC para agencias de viajes</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="REIPSI">
+      <xsd:annotation><xsd:documentation>REIPSI - Régimen especial de IPSI para agencias de viajes</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IPS">
+      <xsd:annotation><xsd:documentation>IPS - Impuestos sobre las primas de seguros</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="RLEA">
+      <xsd:annotation><xsd:documentation>RLEA - Recargo destinado a financiar las funciones de liquidación de entidades aseguradoras</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IVPEE">
+      <xsd:annotation><xsd:documentation>IVPEE - Impuesto sobre el valor de la producción de la energía eléctrica</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IPCN">
+      <xsd:annotation><xsd:documentation>IPCN - Impuesto sobre la producción de combustible nuclear gastado y residuos radiactivos resultantes de la generación de energía nucleoeléctrica</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IACN">
+      <xsd:annotation><xsd:documentation>IACN - Impuesto sobre el almacenamiento de combustible nuclear gastado y residuos radioactivos en instalaciones centralizadas</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IDEC">
+      <xsd:annotation><xsd:documentation>IDEC - Impuesto sobre los Depósitos en las Entidades de Crédito</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="ILTC">
+      <xsd:annotation><xsd:documentation>ILTC - Impuesto sobre las labores del tabaco en la Comunidad Autónoma de Canarias</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IGFEI">
+      <xsd:annotation><xsd:documentation>IGFEI - Impuesto sobre los Gases Fluorados de Efecto Invernadero</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IRNR">
+      <xsd:annotation><xsd:documentation>IRNR - Impuesto sobre la Renta de No Residentes</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+    <xsd:enumeration value="IS">
+      <xsd:annotation><xsd:documentation>IS - Impuesto sobre Sociedades</xsd:documentation></xsd:annotation>
+    </xsd:enumeration>
+
+  </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="UNIDAD_MEDIDA_TYPE">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="01">
+        <xsd:annotation>
+          <xsd:documentation>Unidades</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="02">
+        <xsd:annotation>
+          <xsd:documentation>Horas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="03">
+        <xsd:annotation>
+          <xsd:documentation>Kilogramos</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="04">
+        <xsd:annotation>
+          <xsd:documentation>Litros</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="05">
+        <xsd:annotation>
+          <xsd:documentation>Otros</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="06">
+        <xsd:annotation>
+          <xsd:documentation>Cajas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="07">
+        <xsd:annotation>
+          <xsd:documentation>Bandejas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="08">
+        <xsd:annotation>
+          <xsd:documentation>Barriles</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="09">
+        <xsd:annotation>
+          <xsd:documentation>Bidones</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="10">
+        <xsd:annotation>
+          <xsd:documentation>Bolsas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="11">
+        <xsd:annotation>
+          <xsd:documentation>Bombonas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="12">
+        <xsd:annotation>
+          <xsd:documentation>Botellas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="13">
+        <xsd:annotation>
+          <xsd:documentation>Botes</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="14">
+        <xsd:annotation>
+          <xsd:documentation>Tetra Briks</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="15">
+        <xsd:annotation>
+          <xsd:documentation>Centilitros</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="16">
+        <xsd:annotation>
+          <xsd:documentation>Centímetros</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="17">
+        <xsd:annotation>
+          <xsd:documentation>Cubos</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="18">
+        <xsd:annotation>
+          <xsd:documentation>Docenas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="19">
+        <xsd:annotation>
+          <xsd:documentation>Estuches</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="20">
+        <xsd:annotation>
+          <xsd:documentation>Garrafas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="21">
+        <xsd:annotation>
+          <xsd:documentation>Gramos</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="22">
+        <xsd:annotation>
+          <xsd:documentation>Kilómetros</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="23">
+        <xsd:annotation>
+          <xsd:documentation>Latas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="24">
+        <xsd:annotation>
+          <xsd:documentation>Manojos</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="25">
+        <xsd:annotation>
+          <xsd:documentation>Metros</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="26">
+        <xsd:annotation>
+          <xsd:documentation>Milímetros</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="27">
+        <xsd:annotation>
+          <xsd:documentation>6-Packs</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="28">
+        <xsd:annotation>
+          <xsd:documentation>Paquetes</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="29">
+        <xsd:annotation>
+          <xsd:documentation>Raciones</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="30">
+        <xsd:annotation>
+          <xsd:documentation>Rollos</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="31">
+        <xsd:annotation>
+          <xsd:documentation>Sobres</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="32">
+        <xsd:annotation>
+          <xsd:documentation>Tarrinas</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="33">
+        <xsd:annotation>
+          <xsd:documentation>Metro cúbico</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="34">
+        <xsd:annotation>
+          <xsd:documentation>Segundo</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="35">
+        <xsd:annotation>
+          <xsd:documentation>Vatio</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+            <xsd:enumeration value="36">
+        <xsd:annotation>
+          <xsd:documentation>Kilovatio por hora</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

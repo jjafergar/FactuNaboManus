@@ -1,0 +1,12 @@
+2025-11-11 13:24:08,731 - INFO - 💾 XML guardado en: logs\aBalados_Services,_SL_proforma_25449_20251111_132408.xml
+2025-11-11 13:24:08,732 - INFO - 💾 XML copiado en: responses\xml_25449_20251111_132408.xml
+2025-11-11 13:24:09,718 - INFO - ↳ API raw guardada en: responses\api_25449_20251111_132409.json
+2025-11-11 13:24:09,718 - INFO - 📱 Enlace QR tributario recibido para 25449
+2025-11-11 13:24:09,728 - INFO - ✅ Envío correcto para 25449 (aBalados Services, S.L.)
+2025-11-11 13:24:09,746 - INFO - 💾 XML guardado en: logs\aBalados_Services,_SL_proforma_Int25_007_20251111_132409.xml
+2025-11-11 13:24:09,746 - INFO - 💾 XML copiado en: responses\xml_Int25_007_20251111_132409.xml
+2025-11-11 13:24:10,345 - INFO - ↳ API raw guardada en: responses\api_Int25_007_20251111_132410.json
+2025-11-11 13:24:10,348 - INFO - 📱 Enlace QR tributario recibido para Int25_007
+2025-11-11 13:24:10,350 - INFO - ✅ Envío correcto para Int25_007 (aBalados Services, S.L.)
+2025-11-11 13:24:10,351 - INFO - 📝 Resumen guardado en: responses\summary.json
+2025-11-11 13:24:15,519 - INFO - 🧾 Post-proceso Excel Macro completado (DELETE_OK).
